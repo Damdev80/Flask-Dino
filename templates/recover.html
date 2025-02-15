@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='output.css')}}">
+</head>
+<body class="animate-background">
+    <div class="w-fulll h-screen flex justify-center items-center">
+        <form action="" class="w-2/4 h-[450px] bg-secundary/50 flex flex-col justify-evenly items-center rounded-3xl backdrop-blur-2xl ">
+            <div class="rounded-full w-20 h-20 ">
+                <img src="/static/img/logo-dino.svg" alt="" class="object-cover w-full h-full">
+            
+            </div>
+            <div class="w-4/5 h-auto flex justify-center items-center flex-col">
+                <label for="" class="w-4/5 my-12 cascadia text-white ">Ingrese el correo electronico</label>
+                <input type="email" required  class=" cascadia w-4/5 border-white/50 text-white pl-1  border-2 rounded-lg outline-0 h-10" required placeholder="Ingrese su correo electronico">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

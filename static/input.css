@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #090e14;
+    --color-secundary:#112339;
+    --text-color-skin:#ece5d2;
+
+    
+}
+
+.animate-background {
+    animation: animateBackground 8s ease infinite;
+    background: linear-gradient(45deg, #090e14, #112339, #0d131f, #090e14);
+    background-size: 400% 400%;
+}
+@keyframes animateBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+    
+}
+
+:root{
+    --text-fuentes: 'Cascadia Code', monospace;
+}
+
+.cascadia{
+    font-family: var(--text-fuentes);
+}
+

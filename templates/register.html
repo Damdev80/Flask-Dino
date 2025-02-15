@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='output.css')}}">
+</head>
+<body class="animate-background">
+    <main>
+        <div class="w-full h-screen  flex justify-center items-center">
+            <form action="" class="w-full">
+                <div class="w-4/5 h-[580px] bg-secundary bg-opacity-70 backdrop-blur-2xl rounded-2xl flex flex-col items-center justify-evenly m-auto shadow-amber-50">
+                    <img src="/static/img/logo-dino.svg" alt="" class="w-[100px] h-[100px] rounded-full z-10">
+                    <div class="w-3/5 h-auto flex items-center justify-center flex-wrap">
+                        <label for="" class="cascadia text-2xl  text-white/70 my-1.5">Nombre</label>  
+                        <input type="text" placeholder="Nombre" class="w-full border-white/50 text-white border-2 rounded-lg pl-1 outline-0 h-10" required id="nombre">
+                        <label for="" class="cascadia text-2xl self-start text-white/70 my-1.5">Apellido</label>
+                        <input type="text" placeholder="Introduzca su contraseña" class="w-full border-white/50 text-white pl-1  border-2 rounded-lg outline-0 h-10" required id="contraseña">
+                        <label for="" class="cascadia text-2xl "></label>
+                        <input type="text">
+                        <label for=""></label>
+                        <input type="text">
+                    </div>
+                    <a href="/dasboard" class="bg-primary text-white px-4 py-2 rounded-lg text-center active:translate-y-1 w-60 cascadia transition-all">Login</a>
+                    <div class="w-full flex justify-between">
+                        <a href="/" class="text-white ml-3 cascadia">Registrarse</a>
+                        <a href="/" class="text-white mr-3 cascadia">¿Olvidaste tu contraseña?</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
