@@ -2,9 +2,8 @@ from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])
+@app.route('/index', methods=['GET'])
 def hello():
-    request.method
     return render_template('index.html')
 
 @app.route('/register')
