@@ -557,14 +557,26 @@
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
   }
+  .mt-4 {
+    margin-top: calc(var(--spacing) * 4);
+  }
   .mt-5 {
     margin-top: calc(var(--spacing) * 5);
+  }
+  .mt-6 {
+    margin-top: calc(var(--spacing) * 6);
   }
   .mr-10 {
     margin-right: calc(var(--spacing) * 10);
   }
+  .mb-1 {
+    margin-bottom: calc(var(--spacing) * 1);
+  }
   .mb-2 {
     margin-bottom: calc(var(--spacing) * 2);
+  }
+  .mb-10 {
+    margin-bottom: calc(var(--spacing) * 10);
   }
   .ml-10 {
     margin-left: calc(var(--spacing) * 10);
@@ -614,17 +626,14 @@
   .h-\[150px\] {
     height: 150px;
   }
-  .h-\[450px\] {
-    height: 450px;
+  .h-\[200px\] {
+    height: 200px;
   }
-  .h-\[550px\] {
-    height: 550px;
+  .h-\[400px\] {
+    height: 400px;
   }
   .h-\[650px\] {
     height: 650px;
-  }
-  .h-\[700px\] {
-    height: 700px;
   }
   .h-auto {
     height: auto;
@@ -635,11 +644,11 @@
   .h-screen {
     height: 100vh;
   }
-  .w-2 {
-    width: calc(var(--spacing) * 2);
+  .w-1 {
+    width: calc(var(--spacing) * 1);
   }
-  .w-2\/4 {
-    width: calc(2/4 * 100%);
+  .w-1\/2 {
+    width: calc(1/2 * 100%);
   }
   .w-3 {
     width: calc(var(--spacing) * 3);
@@ -673,6 +682,9 @@
   }
   .w-\[150px\] {
     width: 150px;
+  }
+  .w-\[200px\] {
+    width: 200px;
   }
   .w-\[550px\] {
     width: 550px;
@@ -784,12 +796,19 @@
   .pl-3 {
     padding-left: calc(var(--spacing) * 3);
   }
+  .pl-20 {
+    padding-left: calc(var(--spacing) * 20);
+  }
   .text-center {
     text-align: center;
   }
   .text-2xl {
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
+  }
+  .text-5xl {
+    font-size: var(--text-5xl);
+    line-height: var(--tw-leading, var(--text-5xl--line-height));
   }
   .text-lg {
     font-size: var(--text-lg);
@@ -802,8 +821,17 @@
   .text-\[15px\] {
     font-size: 15px;
   }
-  .text-\[16px\] {
-    font-size: 16px;
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .text-wrap {
+    text-wrap: wrap;
+  }
+  .text-blue-500 {
+    color: var(--color-blue-500);
+  }
+  .text-gray-500 {
+    color: var(--color-gray-500);
   }
   .text-white {
     color: var(--color-white);

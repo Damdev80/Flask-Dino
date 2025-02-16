@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET'])
-def hello():
+def index():
     return render_template('index.html')
 
 @app.route('/login', methods=['GET'])
@@ -18,7 +18,8 @@ def register():
 @app.route('/recover')
 def recover_password():
     return render_template('recover.html')
-    
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')
