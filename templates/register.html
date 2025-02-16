@@ -8,19 +8,27 @@
 </head>
 <body class="animate-background">
     <main>
-        <div class="w-full h-screen  flex justify-center items-center">
-            <form action="" class="w-4/5 h-[550px] bg-secundary/30 flex flex-col items-center rounded-3xl backdrop-blur-2xl">
-                <div class="grid grid-cols-6 grid-rows-5 gap-3">
-                    <div class="col-span-6 row-span-2">
-                        <a href="/index" class="cascadia w-full self-start pt-2 pl-3 text-2xl text-white/50 hover:underline transition-all"><- </a>
-                        <div class="rounded-full w-32 h-32 mt-5">
-                            <img src="/static/img/logo-dino.svg" alt="" class="object-cover w-full h-full">
-                        </div>
-                        <p class="w-full h-20 text-2xl cascadia text-center text-white my-1">Registrate</p>
-                    </div>
-                    <div class="col-span-3 row-span-3 row-start-3">3</div>
-                    <div class="col-span-3 row-span-3 col-start-4 row-start-3">4</div>
+        <div class="w-full h-screen flex justify-center items-center">
+            <form action="" class="w-3/6 h-[550px] bg-secundary/30 flex flex-col items-center rounded-3xl backdrop-blur-2xl">
+                <div class="rounded-full w-30 h-30 mt-5">
+                    <img src="/static/img/logo-dino.svg" alt="" class="object-cover w-full h-full">
                 </div>
+                <p class="w-full h-12 text-2xl cascadia text-center text-white my-1">Registrate</p>
+                <div class="w-full flex  justify-center items-center">
+                    <div class="w-4/5 h-auto flex flex-col items-center justify-center">
+                        <label for="" class="w-full cascadia text-white mt-2 pl-1 ">Nombre</label>
+                        <input type="text" required class="cascadia w-full border-white/50 text-white pl-1  border-2 rounded-lg outline-0 h-10" required placeholder="Nombre">
+                        <label for="" class="w-full cascadia text-white mt-2 pl-1 ">Correo</label>
+                        <input type="email" required class="cascadia w-full border-white/50 text-white pl-1  border-2 rounded-lg outline-0 h-10" required  placeholder="tu_correo@gmail.com">
+                        <label for="" class="w-full cascadia text-white mt-2 pl-1">Contraseña</label>
+                        <input type="password" required class="cascadia w-full border-white/50 text-white pl-1  border-2 rounded-lg outline-0 h-10" required placeholder="Introduzca su contraseña">
+                        <button class="w-3/6 h-8 bg-secundary rounded-sm my-3 text-white cascadia active:translate-y-1 transition-all">Enviar</button>
+                        <p class="cascadia text-white/50 text-sm text-center mt-2">
+                            Crea una cuenta para acceder a todas las funcionalidades.  
+                            <br>¿Ya tienes una cuenta? <a href="/index" class="text-white hover:underline">Inicia sesión aquí</a>.
+                          </p>
+                </div>
+                
             </form>
         </div>
     </main>
