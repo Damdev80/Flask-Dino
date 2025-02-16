@@ -11,7 +11,7 @@
 .animate-background {
     animation: animateBackground 8s ease infinite;
     background: linear-gradient(45deg, #090e14, #112339, #0d131f, #090e14);
-    background-size: 400% 400%;
+    background-size: 500% 500%;
 }
 @keyframes animateBackground {
     0% {
