@@ -2,7 +2,7 @@
 import random
 from models import db, Purchase
 import requests
-import os
+
 
 def save_purchase(user_id, game_data):
     hypothetical_price = round(random.uniform(10, 60), 2)  # Precio aleatorio entre 10 y 60

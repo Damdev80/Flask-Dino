@@ -9,8 +9,8 @@
 </head>
 <body class="animate-background">
     <div class="w-full h-screen flex  justify-center items-center">
-        <form action="" class="sm:w-3/6 sm:h-[450px] w-4/5 h-4/5 bg-secundary/30 flex flex-col  items-center rounded-3xl backdrop-blur-2xl ">
-            <a href="/index" class=" cascadia w-full self-start pt-2 pl-3 text-2xl text-white/50 hover:underline transition-all"><- </a>
+        <form action="" method="POST" class="sm:w-3/6 sm:h-[450px] w-4/5 h-4/5 bg-secundary/30 flex flex-col  items-center rounded-3xl backdrop-blur-2xl ">
+            <a href="/login" class=" cascadia w-full self-start pt-2 pl-3 text-2xl text-white/50 hover:underline transition-all"><- </a>
             <div class="rounded-full w-32 h-32 mt-5">
                 <img src="/static/img/logo-dino.svg" alt="" class="object-cover w-full h-full">
                 
@@ -19,8 +19,8 @@
             <div class="w-full h-auto flex flex-col items-center justify-center">
                 <div class="w-4/5 h-auto flex flex-col items-center justify-center">
                     <label for="" class="w-4/6 cascadia text-white mb-2 pl-1 text-[15px] ">Ingrese el correo electronico</label>
-                    <input type="email" required  class=" cascadia w-4/6 border-white/50 text-white pl-1  border-2 rounded-lg outline-0 h-10" required placeholder="tu_correo@gmail.com">
-                    <button class="w-3/6 h-8 bg-secundary rounded-sm my-3 text-white cascadia active:translate-y-1 transition-all">Enviar</button>
+                    <input type="email" required name="email"  class=" cascadia w-4/6 border-white/50 text-white pl-1  border-2 rounded-lg outline-0 h-10" required placeholder="tu_correo@gmail.com">
+                    <button type="submit" class="w-3/6 h-8 bg-secundary rounded-sm my-3 text-white cascadia active:translate-y-1 transition-all">Enviar enlace de recuperación</button>
                 </div>
             </div>
             <p class="text-sm text-white/20 text-center mt-1 pb-2 cascadia flex-wrap">

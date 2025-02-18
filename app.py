@@ -4,7 +4,10 @@ from flask_login import LoginManager, login_user, login_required, logout_user, c
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User  # Asegúrate de importar el modelo User desde models.py
 from utils import save_purchase  # Importamos la función de utils.py
-import os
+from utils import send_recovery_email
+from datetime import datetime, timedelta, timezone
+import os, secrets
+
 
 app = Flask(__name__)
 
@@ -20,7 +23,7 @@ login_manager.init_app(app)  # Asegúrate de inicializar LoginManager con la app
 login_manager.login_view = 'login'  # Aquí indicamos la vista de login por defecto
 
 # Inicializamos SQLAlchemy
-db.init_app(app)  # Inicializamos SQLAlchemy con la aplicación
+db.init_app(app)  
 
 # Cargador de usuario necesario para Flask-Login
 @login_manager.user_loader
@@ -83,9 +86,61 @@ def logout():
 @app.route('/recover', methods=['GET', 'POST'])
 def recover_password():
     if request.method == 'POST':
-        # Lógica para recuperar contraseña
-        pass
+        email = request.form['email']
+        user = User.query.filter_by(email=email).first()
+
+        if user:
+            # Generar token seguro
+            token = secrets.token_urlsafe(32)
+            user.reset_token = token
+            user.reset_expiration = datetime.now(timezone.utc) + timedelta(minutes=30)
+            db.session.commit()
+
+            # URL de recuperación
+            reset_url = url_for('reset_password', token=token, _external=True)
+
+            # Enviar el correo con Resend
+            response = send_recovery_email(email, reset_url)
+
+            if response.get("error"):
+                flash("Error al enviar el correo. Intenta más tarde.", "error")
+            else:
+                flash("Se ha enviado un enlace de recuperación a tu correo.", "success")
+        else:
+            flash("No se encontró una cuenta con ese email.", "error")
+
     return render_template('recover.html')
+
+@app.route('/reset-password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    user = User.query.filter_by(reset_token=token).first()
+
+    if not user or user.reset_expiration < datetime.utcnow():
+        flash("El enlace ha expirado o es inválido.", "error")
+        return redirect(url_for('recover_password'))
+
+    if request.method == 'POST':
+        new_password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+
+        if not confirm_password:
+            flash("El campo de confirmación es obligatorio.", "error")
+            return redirect(request.url)
+        
+        if new_password != confirm_password:
+            flash("Las contraseñas no coinciden.", "error")
+            return redirect(url_for('reset_password', token=token))
+
+        hashed_password = generate_password_hash(new_password, method='pbkdf2:sha256')
+        user.password = hashed_password
+        user.reset_token = None
+        user.reset_expiration = None
+        db.session.commit()
+
+        flash("Tu contraseña ha sido restablecida con éxito. Inicia sesión.", "success")
+        return redirect(url_for('login'))
+
+    return render_template('reset_password.html', token=token)
 
 # Crear las tablas de la base de datos (dentro del contexto de la aplicación)
 with app.app_context():
