@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/static/img/logo-dino.svg" type="image/x-icon">
     <title>Dino-Games</title>
     <link rel="stylesheet" href="{{url_for('static',filename='output.css')}}">
 </head>
 <body class="animate-background">
+    
     <header>
         <ul class="w-full h-16 flex items-center justify-between bg-primary/20 text-white backdrop-blur-lg fixed top-0 z-10">
             <li class="ml-10 cascadia flex items-center"><img src="{{url_for('static',filename='img/logo-dino.svg')}}" alt=""><a href="/" class="pl-2">Dino</a></li>
             <div class="flex items-center justify-between w-72 mr-10">
-                <li class="hover:bg-secundary transition-all p-3 rounded cascadia"><a href="/">About us</a></li>
-                <li class="hover:bg-secundary transition-all p-3 rounded cascadia"><a href="/">Juegos</a></li>
-                <li class="hover:bg-secundary transition-all p-3 rounded cascadia"><a href="/login">Login</a></li>
+                <li class=""><a href="/" class="hover:bg-secundary transition-all p-3 rounded cascadia">About us</a></li>
+                <li class=""><a href="#juegos" class="hover:bg-secundary transition-all p-3 rounded cascadia">Juegos</a></li>
+                <li class=""><a href="/login" class="hover:bg-secundary transition-all p-3 rounded cascadia">Login</a></li>
             </div>
         </ul>
     </header>
@@ -41,8 +43,22 @@
     </article>
 
     <main>
-        <div class="h-screen w-full">
-
+        <section class="h-screen flex flex-col justify-center items-center relative w-4/5 mx-auto overflow-hidden px-12 rounded-lg z-0" id="juegos">
+            <h1 class="text-center text-4xl text-white mb-10 cascadia">Nuestros juegos</h1>
+            <div id="carousel" class="flex gap-4 min-w-max marquee">
+                <!-- Los juegos se insertarán aquí dinámicamente -->
+            </div>
+        </section>
+        <div id="gameModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <img id="modalImage" class="modal-image" src="" alt="Imagen del juego">
+                <div class="modal-details">
+                    <h2 id="modalTitle" class="text-2xl font-bold mb-4 text-white"></h2>
+                    <p id="modalDescription" class="text-white/50"></p>
+                    
+                </div>
+            </div>
         </div>
     </main>
     
@@ -51,5 +67,6 @@
         <br><a href="/terminos" class="text-blue-500 hover:underline cascadia ">Términos y condiciones</a> |  
         <a href="/privacidad" class="text-blue-500 hover:underline cascadia ">Política de privacidad</a>
     </footer>
+    <script src="{{url_for('static',filename='js/main.js')}}"></script>
 </body>
 </html>
