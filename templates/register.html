@@ -10,7 +10,7 @@
 <body class="animate-background">
     <main>
         <div class="w-full h-screen flex justify-center items-center">
-            <form action="" class="sm:w-3/6 sm:h-[550px] w-4/5 h-4/5 bg-secundary/30 flex flex-col items-center rounded-3xl backdrop-blur-2xl">
+            <form action="" class="sm:w-3/6 sm:h-[550px] w-4/5 h-4/5 bg-secundary/30 flex flex-col items-center rounded-3xl backdrop-blur-2xl" method="POST">
                 <div class="rounded-full w-30 h-30 mt-5">
                     <img src="/static/img/logo-dino.svg" alt="" class="object-cover w-full h-full">
                 </div>
@@ -18,13 +18,13 @@
                 <div class="w-full flex  justify-center items-center">
                     <div class="w-4/5 h-auto flex flex-col items-center justify-center">
                         <label for="" class="w-full cascadia text-white mt-2 pl-1 ">Nombre</label>
-                        <input type="text" required class="cascadia w-full border-white/50 text-white pl-1  border-2 rounded-lg outline-0 h-10" required placeholder="Nombre">
+                        <input type="text" required class="cascadia w-full border-white/50 text-white pl-1  border-2 rounded-lg outline-0 h-10" required placeholder="Nombre" name="username">
                         <label for="" class="w-full cascadia text-white mt-2 pl-1 ">Correo</label>
-                        <input type="email" required class="cascadia w-full border-white/50 text-white pl-1 peer focus:invalid:border-pink-500 focus:outline-none focus:border-white/50 invalid:text-pink-500 invalid:border-pink-500  border-2 rounded-lg  h-10" required  placeholder="tu_correo@gmail.com">
+                        <input type="email" required class="cascadia w-full border-white/50 text-white pl-1 peer focus:invalid:border-pink-500 focus:outline-none focus:border-white/50 invalid:text-pink-500 invalid:border-pink-500  border-2 rounded-lg  h-10" required  placeholder="tu_correo@gmail.com" name="email">
                         <p class="invisible text-sm text-pink-600 peer-invalid:visible self-start cascadia">Por favor, ingrese un email válido.</p>
                         <label for="" class="w-full cascadia text-white mt-2 pl-1">Contraseña</label>
-                        <input type="password" required class="cascadia w-full border-white/50 text-white pl-1  border-2 rounded-lg outline-0 h-10" required placeholder="Introduzca su contraseña">
-                        <button class="w-3/6 h-8 bg-secundary rounded-sm my-3 text-white cascadia active:translate-y-1 transition-all">Enviar</button>
+                        <input type="password" required class="cascadia w-full border-white/50 text-white pl-1  border-2 rounded-lg outline-0 h-10" required placeholder="Introduzca su contraseña" name="password">
+                        <button class="w-3/6 h-8 bg-secundary rounded-sm my-3 text-white cascadia active:translate-y-1 transition-all" type="submit">Enviar</button>
                         <p class="cascadia text-white/50 text-sm text-center mt-2">
                             Crea una cuenta para acceder a todas las funcionalidades.  
                             <br>¿Ya tienes una cuenta? <a href="/login" class="text-white hover:underline">Inicia sesión aquí</a>.

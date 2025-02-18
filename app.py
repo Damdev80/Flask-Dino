@@ -1,56 +1,96 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_sqlalchemy import SQLAlchemy
-import random
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
+from models import db, User  # Asegúrate de importar el modelo User desde models.py
+from utils import save_purchase  # Importamos la función de utils.py
+import os
 
 app = Flask(__name__)
 
-
-#Configuración de la base de datos
+# Configuración de la base de datos
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:@localhost/dino_games_flask'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Inicializar SQLAlchemy
-db = SQLAlchemy(app)
+app.config['SECRET_KEY'] = os.urandom(24)
 
-class Purchase(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)  # Usuario que compró
-    game_id = db.Column(db.String(50), nullable=False)  # ID del juego en la API
-    game_title = db.Column(db.String(100), nullable=False)  # Título del juego
-    price = db.Column(db.Float, nullable=False)  # Precio en el momento de la compra
-    purchase_date = db.Column(db.DateTime, default=db.func.current_timestamp())  # Fecha de compra
+# Inicializamos LoginManager
+login_manager = LoginManager()
+login_manager.init_app(app)  # Asegúrate de inicializar LoginManager con la app
+login_manager.login_view = 'login'  # Aquí indicamos la vista de login por defecto
 
+# Inicializamos SQLAlchemy
+db.init_app(app)  # Inicializamos SQLAlchemy con la aplicación
 
-def save_purchase(user_id, game_data):
-    hypothetical_price = round(random.uniform(10, 60), 2)  # Precio aleatorio entre 10 y 60
+# Cargador de usuario necesario para Flask-Login
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))  # Recupera el usuario de la base de datos
 
-    new_purchase = Purchase(
-        user_id=user_id,
-        game_id=game_data["id"],
-        game_title=game_data["title"],
-        price=hypothetical_price  # Precio ficticio
-    )
-    db.session.add(new_purchase)
-    db.session.commit()
-
-@app.route('/', methods=['GET'])
-@app.route('/index', methods=['GET'])
+# Página de inicio (solo accesible para usuarios registrados)
+@app.route('/')
+@login_required
 def index():
     return render_template('index.html')
 
-@app.route('/login', methods=['GET'])
+# Ruta para el login
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        user = User.query.filter_by(username=username).first()
+        if user and check_password_hash(user.password, password):
+            login_user(user)
+            return redirect(url_for('index'))
+        else:
+            flash('Nombre de usuario o contraseña incorrectos', 'error')
+
     return render_template('login.html')
 
-@app.route('/register')
+# Ruta para registrar un nuevo usuario
+@app.route('/register', methods=['GET', 'POST'])
 def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
+
+        # Verificar si el usuario ya existe
+        if User.query.filter_by(username=username).first():
+            flash('El nombre de usuario ya está en uso.', 'error')
+            return redirect(url_for('register'))
+
+        new_user = User(username=username, email=email, password=hashed_password)
+        db.session.add(new_user)
+        db.session.commit()
+
+        flash('¡Te has registrado exitosamente!', 'success')
+        return redirect(url_for('login'))
+    
     return render_template('register.html')
 
-@app.route('/recover')
+# Ruta para cerrar sesión
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
+# Ruta para la recuperación de contraseña (si decides implementarla)
+@app.route('/recover', methods=['GET', 'POST'])
 def recover_password():
+    if request.method == 'POST':
+        # Lógica para recuperar contraseña
+        pass
     return render_template('recover.html')
 
-
+# Crear las tablas de la base de datos (dentro del contexto de la aplicación)
+with app.app_context():
+    db.create_all()  
+    
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')

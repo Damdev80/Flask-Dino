@@ -794,6 +794,13 @@
   .gap-4 {
     gap: calc(var(--spacing) * 4);
   }
+  .space-y-2 {
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 2) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-y-reverse)));
+    }
+  }
   .self-start {
     align-self: flex-start;
   }
@@ -820,6 +827,9 @@
   .rounded-lg {
     border-radius: var(--radius-lg);
   }
+  .rounded-md {
+    border-radius: var(--radius-md);
+  }
   .rounded-sm {
     border-radius: var(--radius-sm);
   }
@@ -843,6 +853,15 @@
   .bg-primary\/20 {
     background-color: color-mix(in oklab, var(--color-primary) 20%, transparent);
   }
+  .bg-red-600 {
+    background-color: var(--color-red-600);
+  }
+  .bg-red-800 {
+    background-color: var(--color-red-800);
+  }
+  .bg-red-900 {
+    background-color: var(--color-red-900);
+  }
   .bg-secundary {
     background-color: var(--color-secundary);
   }
@@ -855,8 +874,14 @@
   .object-cover {
     object-fit: cover;
   }
+  .p-2 {
+    padding: calc(var(--spacing) * 2);
+  }
   .p-3 {
     padding: calc(var(--spacing) * 3);
+  }
+  .p-4 {
+    padding: calc(var(--spacing) * 4);
   }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
@@ -1046,14 +1071,14 @@
   .\[ticket\:1570\] {
     ticket: 1570;
   }
+  .\[ticket\:2362\] {
+    ticket: 2362;
+  }
   .\[ticket\:2406\] {
     ticket: 2406;
   }
   .\[ticket\:2619\] {
     ticket: 2619;
-  }
-  .\[ticket\:3208\] {
-    ticket: 3208;
   }
   .\[ticket\:3633\] {
     ticket: 3633;
@@ -1067,6 +1092,9 @@
   .\[ticket\:3989\] {
     ticket: 3989;
   }
+  .\[ticket\:4457\] {
+    ticket: 4457;
+  }
   .\[ticket\:4730\] {
     ticket: 4730;
   }
@@ -1079,11 +1107,8 @@
   .\[ticket\:2229\] {
     ticket: 2229;
   }
-  .\[ticket\:2362\] {
-    ticket: 2362;
-  }
-  .\[ticket\:4457\] {
-    ticket: 4457;
+  .\[ticket\:3208\] {
+    ticket: 3208;
   }
   .peer-invalid\:visible {
     &:is(:where(.peer):invalid ~ *) {
@@ -1313,6 +1338,11 @@ html {
   syntax: "*";
   inherits: false;
   initial-value: skewY(0);
+}
+@property --tw-space-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
 }
 @property --tw-border-style {
   syntax: "*";
