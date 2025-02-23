@@ -24,3 +24,13 @@ class Purchase(db.Model):
     price = db.Column(db.Float, nullable=False)
 
 # Modelo de Juegos
+class Game(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False, unique=True)
+    image_url = db.Column(db.String(500), nullable=False)
+    price = db.Column(db.Float, nullable=False)
+
+    def __init__(self, name, image_url, price):
+        self.name = name
+        self.image_url = image_url
+        self.price = price

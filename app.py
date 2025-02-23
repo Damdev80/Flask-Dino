@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User  # Asegúrate de importar el modelo User desde models.py
-from utils import save_purchase  # Importamos la función de utils.py
 from utils import send_recovery_email
 from datetime import datetime, timedelta, timezone
 import os, secrets
@@ -34,7 +33,8 @@ def load_user(user_id):
 @app.route('/')
 @login_required
 def index():
-    return render_template('index.html')
+    return render_template('index.html'), 404
+    
 
 # Ruta para el login
 @app.route('/login', methods=['GET', 'POST'])
