@@ -1,4 +1,4 @@
-//Busqueda dinamica de jeugos.
+//Busqueda dinamica de juegos.
 document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("search");
     const juegos = document.querySelectorAll(".juego-card");
