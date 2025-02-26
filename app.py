@@ -1,8 +1,8 @@
-from flask import Flask, render_template, redirect, url_for, request, flash
+from flask import Flask, render_template, redirect, url_for, request, flash, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import db, User  # Asegúrate de importar el modelo User desde models.py
+from models import db, User, Game  # Asegúrate de importar el modelo User desde models.py
 from utils import send_recovery_email
 from datetime import datetime, timedelta, timezone
 import os, secrets
@@ -141,6 +141,21 @@ def reset_password(token):
         return redirect(url_for('login'))
 
     return render_template('reset_password.html', token=token)
+
+
+
+#Ruta para mostrar coleccion de juegos
+@app.route('/categorias')
+def categorias():
+    juegos = Game.query.all()
+    return render_template('categorias.html', juegos=juegos)
+
+
+@app.route('/api/juegos')
+def api_juegos():
+    juegos = Game.query.all()
+    juegos_json = [{"id": j.id, "name": j.name, "image_url": j.image_url, "price": j.price, "genre": j.genre} for j in juegos]
+    return jsonify(juegos_json)
 
 # Crear las tablas de la base de datos (dentro del contexto de la aplicación)
 with app.app_context():
