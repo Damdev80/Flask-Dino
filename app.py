@@ -150,6 +150,9 @@ def categorias():
     juegos = Game.query.all()
     return render_template('categorias.html', juegos=juegos)
 
+@app.route('/bienvenido')
+def welcome():
+    return render_template('welcome.html')
 
 @app.route('/api/juegos')
 def api_juegos():

@@ -1,13 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='output.css')}}">
-
-</head>
-<body>
-        
+<html lang="en" class="">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/static/img/logo-dino.svg" type="image/x-icon">
+        <title>welcome</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='output.css')}}">
+    </head>
+<body class="animate-background">
+    <header>
+        <ul
+            class="w-full h-16 flex items-center justify-between bg-primary/20 text-white backdrop-blur-lg fixed top-0 z-10">
+            <li class="ml-10 cascadia flex items-center"><img src="{{url_for('static',filename='img/logo-dino.svg')}}"
+                    alt=""><a href="/" class="pl-2">Icone</a></li>
+            <div class="flex items-center justify-between w-72 mr-10">
+                <li class=""><a href="/" class="hover:bg-secundary transition-all p-3 rounded cascadia">About us</a>
+                </li>
+                <li class=""><a href="#juegos" class="hover:bg-secundary transition-all p-3 rounded cascadia">Juegos</a>
+                </li>
+                <li class=""><a href="/login" class="hover:bg-secundary transition-all p-3 rounded cascadia">Log out</a>
+                </li>
+            </div>
+        </ul>
+    </header>
+    <footer class="mt-6 text-center text-gray-500 text-sm cascadia">
+        © 2025 TuEmpresa. Todos los derechos reservados.
+        <br><a href="/terminos" class="text-blue-500 hover:underline cascadia ">Términos y condiciones</a> |
+        <a href="/privacidad" class="text-blue-500 hover:underline cascadia ">Política de privacidad</a>
+    </footer>
+    <script src="{{url_for('static',filename='js/main.js')}}"></script>
 </body>
 </html>
