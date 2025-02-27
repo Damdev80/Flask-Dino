@@ -151,16 +151,25 @@ def categorias():
     return render_template('categorias.html', juegos=juegos)
 
 
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
+
+
 @app.route('/api/juegos')
 def api_juegos():
     juegos = Game.query.all()
     juegos_json = [{"id": j.id, "name": j.name, "image_url": j.image_url, "price": j.price, "genre": j.genre} for j in juegos]
     return jsonify(juegos_json)
 
+
 # Crear las tablas de la base de datos (dentro del contexto de la aplicación)
 with app.app_context():
     db.create_all()  
+
+    
+    
     
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000, host='0.0.0.0')
+    app.run(debug=True, port=5000)
