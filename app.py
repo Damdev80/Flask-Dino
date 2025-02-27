@@ -143,6 +143,11 @@ def reset_password(token):
     return render_template('reset_password.html', token=token)
 
 
+#Entorno de pruebas
+@app.route('/test')
+def test():
+    return render_template('test.html')
+
 
 #Ruta para mostrar coleccion de juegos
 @app.route('/categorias')
@@ -151,8 +156,9 @@ def categorias():
     return render_template('categorias.html', juegos=juegos)
 
 
-@app.route('/dashboard')
+@app.route('/dashboard/')
 def dashboard():
+    
     return render_template('dashboard.html')
 
 

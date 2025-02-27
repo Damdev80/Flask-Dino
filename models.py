@@ -34,3 +34,15 @@ class Game(db.Model):
         self.name = name
         self.image_url = image_url
         self.price = price
+        
+# Modelo de clientes
+# class Client(db.model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(255), nullable=False)
+#     img_url = db.Column(db.String(500), nullable=False)
+    
+#     def __init__(self, name, img_url):
+#         self.name = name
+#         self.img_url = img_url
+        
+        

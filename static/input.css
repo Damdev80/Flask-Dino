@@ -1,13 +1,27 @@
 @import "tailwindcss";
 
+@property --border-angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
 @theme {
     --color-primary: #090e14;
     --color-secundary:#112339;
     --text-color-skin:#ece5d2;
     --color-skin:#fff9e2;
     
-    
+    --animate-rotate-border: border-rotate 3s linear infinite;
+
+    @keyframes border-rotate {
+        to{
+            --border-angle: 360deg;
+        }
+    } 
 }
+
+
 
 .animate-background {
     animation: animateBackground 8s ease infinite;
