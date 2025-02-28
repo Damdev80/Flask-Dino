@@ -23,7 +23,7 @@
     --animate-appear: animate-appear 1s ease-out;
 
     @keyframes animate-appear {
-        0%{
+        01%{
             opacity: 0;
         }
         100%{
