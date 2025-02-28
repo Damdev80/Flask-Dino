@@ -18,7 +18,18 @@
         to{
             --border-angle: 360deg;
         }
-    } 
+    }
+    
+    --animate-appear: animate-appear 1s ease-out;
+
+    @keyframes animate-appear {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
 }
 
 
