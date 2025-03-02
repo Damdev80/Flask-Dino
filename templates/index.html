@@ -1,19 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" class="">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/static/img/logo-dino.svg" type="image/x-icon">
-    <title>Dino-Games</title>
+    <title>Document</title>
     <link rel="stylesheet" href="{{url_for('static',filename='output.css')}}">
 </head>
-
-<body class="animate-background">
-
+<body class="w-full h-screen animate-background ">
     <header>
         <ul
-            class="w-full h-16 flex items-center justify-between bg-primary/20 text-white backdrop-blur-lg fixed top-0 z-10">
+            class="w-full h-16 flex items-center justify-between bg-primary/20 text-white  fixed top-0 z-10">
             <li class="ml-10 cascadia flex items-center"><img src="{{url_for('static',filename='img/logo-dino.svg')}}"
                     alt=""><a href="/" class="pl-2">Icone</a></li>
             <div class="flex items-center justify-between w-72 mr-10">
@@ -26,70 +22,18 @@
             </div>
         </ul>
     </header>
-    <article>
-        <div class="w-full flex items-center justify-center  h-screen">
-            <div class="text-white w-1/2   flex-col items-center justify-center pl-20">
-                <h1 class="text-5xl mb-10 cascadia">
-                    About us
-                </h1>
-                <div class="text-white/50 cascadia ">
-                    <p class="mb-2 text-pretty">At Dino-Games, we are passionate about the world of gaming. We
-                        specialize in offering a wide selection of video games, gaming PCs, and Xbox consoles for all
-                        types of players, from casual gamers to hardcore enthusiasts.</p>
-
-                    <p class="mb-2 text-pretty">Our mission is to provide the best shopping experience with high-quality
-                        products, competitive prices, and exceptional service. We work with top brands to ensure you get
-                        the latest in gaming technology and entertainment.</p>
-
-                    <p class="mb-2 text-pretty">Whether you're looking for the newest game release, a powerful gaming
-                        PC, or an Xbox with the best accessories, Dino-Games has everything you need to take your gaming
-                        experience to the next level. </p>
-
-                    <p class="mb-2 text-pretty">🎮 Play without limits. Experience Dino-Games.</p>
-                </div>
-            </div>
-            <div class=" w-1/2 text-white flex  h-[400px] items-center justify-center">
-                <img src="{{url_for('static',filename='img/logo-dino.svg')}}" alt=""
-                    class="w-[200px] h-[200px] rounded-full ">
+    <div class="w-full h-screen bg-transparent flex  bg-[url('/static/img/img-background-page-main.webp')] bg-gradient-to-bl from-primary from-10% via-secundary via-80%  to-primary to-90% bg-cover bg-center backdrop-blur-2xl">
+        <div class="w-1/2 h-screen flex flex-col justify-center items-center cascadia">
+            <h1 class="text-white text-5xl ">Welcome to <br> <span class="text-4xl">Great</span>  <span class="text-4xl">experience</span></h1>
+            <p></p>
+            <div>
+                <button></button>
+                <button></button>
             </div>
         </div>
+        <div class="w-1/2 h-screen flex flex-col justify-center items-center">
 
-    </article>
-
-    <main>
-        <section
-            class="h-screen flex flex-col justify-center items-center relative w-4/5 mx-auto overflow-hidden px-12 rounded-lg z-0"
-            id="juegos">
-            <h1 class="text-center text-4xl text-white mb-10 cascadia">Nuestros juegos</h1>
-            <div id="carousel" class="flex gap-4 min-w-max marquee">
-                {% for game in games %}
-                <div>
-                    <img src="{{ game.image_url }}" alt="{{ game.name }}">
-                    <h2>{{ game.name }}</h2>
-                    <p>Precio: ${{ game.price }}</p>
-                </div>
-                {% endfor %}
-            </div>
-        </section>
-        <div id="gameModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <img id="modalImage" class="modal-image" src="" alt="Imagen del juego">
-                <div class="modal-details">
-                    <h2 id="modalTitle" class="text-2xl font-bold mb-4 text-white"></h2>
-                    <p id="modalDescription" class="text-white/50"></p>
-
-                </div>
-            </div>
-        </div>1
-    </main>
-
-    <footer class="mt-6 text-center text-gray-500 text-sm cascadia">
-        © 2025 TuEmpresa. Todos los derechos reservados.
-        <br><a href="/terminos" class="text-blue-500 hover:underline cascadia ">Términos y condiciones</a> |
-        <a href="/privacidad" class="text-blue-500 hover:underline cascadia ">Política de privacidad</a>
-    </footer>
-    <script src="{{url_for('static',filename='js/main.js')}}"></script>
+        </div>
+    </div>
 </body>
-
 </html>

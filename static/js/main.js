@@ -1,13 +1,15 @@
-//Busqueda dinamica de juegos.
-document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById("search");
-    const juegos = document.querySelectorAll(".juego-card");
+const themeToggleBtn = document.getElementById('theme-toggle');
+const htmlElement = document.documentElement;
 
-    searchInput.addEventListener("input", () => {
-        const filtro = searchInput.value.toLowerCase();
-        juegos.forEach(juego => {
-            const nombre = juego.querySelector("h2").textContent.toLowerCase();
-            juego.style.display = nombre.includes(filtro) ? "block" : "none";
-        });
-    });
+// Al cargar la página, verifica la preferencia guardada
+if (localStorage.getItem('theme') === 'dark') {
+  htmlElement.classList.add('dark');
+}
+
+themeToggleBtn.addEventListener('click', () => {
+  if (htmlElement.classList.toggle('dark')) {
+    localStorage.setItem('theme', 'dark');
+  } else {
+    localStorage.setItem('theme', 'light');
+  }
 });

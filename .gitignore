@@ -1,3 +1,43 @@
+# Virtual Environment
 /.venv
+/venv/
+/env/
+
+# Node.js dependencies
 /node_modules
+
+# Template test file
 /templates/test.html
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Environment variables
+.env
+.flaskenv
+.env.*
+
+# IDE settings
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs and local files
+*.log
+.DS_Store
+instance/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/

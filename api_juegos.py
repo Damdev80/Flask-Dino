@@ -23,7 +23,7 @@ def get_games_from_api():
                 # Verificar si el juego ya está en la base de datos
                 existing_game = Game.query.filter_by(name=name).first()
                 if not existing_game:
-                    new_game = Game(name=name, image_url=image_url, price=price)
+                    new_game = Game(name=name, image_url=image_url)
                     db.session.add(new_game)
 
             db.session.commit()

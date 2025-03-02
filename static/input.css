@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 @property --border-angle {
     syntax: '<angle>';
     inherits: false;
@@ -11,6 +14,7 @@
     --color-secundary:#112339;
     --text-color-skin:#ece5d2;
     --color-skin:#fff9e2;
+    --text-
     
     --animate-rotate-border: border-rotate 3s linear infinite;
 
@@ -30,6 +34,10 @@
             opacity: 1;
         }
     }
+
+    
+
+    
 }
 
 
@@ -37,6 +45,12 @@
 .animate-background {
     animation: animateBackground 8s ease infinite;
     background: linear-gradient(45deg, #090e14, #112339, #0d131f, #090e14);
+    background-size: 500% 500%;
+}
+
+.ligth-animate-background {
+    animation: animateBackground 8s ease infinite;
+    background: linear-gradient(45deg, #f5f9ff, #e3ecf8, #f0f5fc, #f5f9ff);
     background-size: 500% 500%;
 }
 @keyframes animateBackground {

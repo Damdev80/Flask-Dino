@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='output.css')}}">
     <link rel="shortcut icon" href="{{url_for('static', filename='img/logo-dino.svg')}}" type="image/x-icon">
 </head>
-<body class="animate-background">
+<body class="w-full h-screen dark:ligth-animate-backgroun animate-background">
     <header>
         <ul
             class="w-full h-16 flex items-center justify-between bg-primary/20 text-white backdrop-blur-lg fixed top-0 z-10">
@@ -18,21 +18,24 @@
                 </li>
                 <li class=""><a href="#juegos" class="hover:bg-secundary transition-all p-3 rounded cascadia">Juegos</a>
                 </li>
-                <li class=""><a href="/login" class="hover:bg-secundary transition-all p-3 rounded cascadia">Log out</a>
-                </li>
+                <button id="theme-toggle" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded">
+                    Cambiar Tema
+                  </button>
+                
             </div>
         </ul>
     </header>
     <!-- Parte principal de la web -->
     <main>
-        <div class="h-screen w-screen flex  justify-center items-center bg-transparent">
-            <div class="w-full animate-none hover:animate-rotate-border max-w-sm rounded-lg bg-conic/[from_var(--border-angle)] from-black via-green-500  to-black from-80% via-90% to-100% p-px">
-                <div class="p-10 rounded-lg bg-neutral-900 text-white text-center">
-                    Hola ;D
-                </div>
+        <!-- <div class="h-screen w-screen flex  justify-center items-center bg-gradient-to-bl from-primary from-10% via-secundary via-80%  to-primary to-90%">
+            <div class="">
+                
             </div>
-        </div>    
+        </div>     -->
+        
+        <div class="sketchfab-embed-wrapper"> <iframe title="Playstation 4 Controller" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/df28aba297204ee788e4bc16a5b6bdb4/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> </a></p></div>
     </main>
+    <script src="/static/js/main.js"></script>
     <footer class="mt-6 text-center text-gray-500 text-sm cascadia">
         © 2025 TuEmpresa. Todos los derechos reservados.
         <br><a href="/terminos" class="text-blue-500 hover:underline cascadia ">Términos y condiciones</a> |

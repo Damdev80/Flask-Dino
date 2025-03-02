@@ -55,7 +55,6 @@
     --color-primary: #090e14;
     --color-secundary: #112339;
     --text-color-skin: #ece5d2;
-    --animate-rotate-border: border-rotate 3s linear infinite;
     --animate-appear: animate-appear 1s ease-out;
   }
 }
@@ -207,17 +206,11 @@
   .fixed {
     position: fixed;
   }
-  .relative {
-    position: relative;
-  }
   .static {
     position: static;
   }
   .top-0 {
     top: calc(var(--spacing) * 0);
-  }
-  .z-0 {
-    z-index: 0;
   }
   .z-10 {
     z-index: 10;
@@ -279,23 +272,17 @@
   .mb-2 {
     margin-bottom: calc(var(--spacing) * 2);
   }
-  .mb-4 {
-    margin-bottom: calc(var(--spacing) * 4);
-  }
-  .mb-10 {
-    margin-bottom: calc(var(--spacing) * 10);
-  }
   .ml-10 {
     margin-left: calc(var(--spacing) * 10);
-  }
-  .block {
-    display: block;
   }
   .flex {
     display: flex;
   }
   .grid {
     display: grid;
+  }
+  .inline {
+    display: inline;
   }
   .h-4\/5 {
     height: calc(4/5 * 100%);
@@ -329,9 +316,6 @@
   }
   .h-\[150px\] {
     height: 150px;
-  }
-  .h-\[200px\] {
-    height: 200px;
   }
   .h-\[280px\] {
     height: 280px;
@@ -384,23 +368,14 @@
   .w-\[150px\] {
     width: 150px;
   }
-  .w-\[200px\] {
-    width: 200px;
-  }
   .w-\[550px\] {
     width: 550px;
   }
   .w-full {
     width: 100%;
   }
-  .min-w-max {
-    min-width: max-content;
-  }
   .animate-appear {
     animation: var(--animate-appear);
-  }
-  .animate-rotate-border {
-    animation: var(--animate-rotate-border);
   }
   .grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -437,9 +412,6 @@
   }
   .self-start {
     align-self: flex-start;
-  }
-  .overflow-hidden {
-    overflow: hidden;
   }
   .rounded {
     border-radius: 0.25rem;
@@ -495,9 +467,31 @@
     --tw-gradient-position: from var(--border-angle);
     background-image: conic-gradient(var(--tw-gradient-stops));
   }
+  .bg-gradient-to-bl {
+    --tw-gradient-position: to bottom left in oklab;
+    background-image: linear-gradient(var(--tw-gradient-stops));
+  }
+  .bg-\[url\(\'\/static\/img\/img-background-page-main\.webp\'\)\] {
+    background-image: url('/static/img/img-background-page-main.webp');
+  }
+  .from-primary {
+    --tw-gradient-from: var(--color-primary);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
   .from-transparent {
     --tw-gradient-from: transparent;
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .from-10\% {
+    --tw-gradient-from-position: 10%;
+  }
+  .via-secundary {
+    --tw-gradient-via: var(--color-secundary);
+    --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-via-stops);
+  }
+  .via-80\% {
+    --tw-gradient-via-position: 80%;
   }
   .to-cyan-500 {
     --tw-gradient-to: var(--color-cyan-500);
@@ -507,8 +501,21 @@
     --tw-gradient-to: var(--color-cyan-800);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
+  .to-primary {
+    --tw-gradient-to: var(--color-primary);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-90\% {
+    --tw-gradient-to-position: 90%;
+  }
   .to-100\% {
     --tw-gradient-to-position: 100%;
+  }
+  .bg-cover {
+    background-size: cover;
+  }
+  .bg-center {
+    background-position: center;
   }
   .object-cover {
     object-fit: cover;
@@ -537,9 +544,6 @@
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
   }
-  .px-12 {
-    padding-inline: calc(var(--spacing) * 12);
-  }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
   }
@@ -557,9 +561,6 @@
   }
   .pl-3 {
     padding-left: calc(var(--spacing) * 3);
-  }
-  .pl-20 {
-    padding-left: calc(var(--spacing) * 20);
   }
   .text-center {
     text-align: center;
@@ -598,9 +599,6 @@
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
-  }
-  .text-pretty {
-    text-wrap: pretty;
   }
   .whitespace-nowrap {
     white-space: nowrap;
@@ -666,13 +664,6 @@
   .duration-75 {
     --tw-duration: 75ms;
     transition-duration: 75ms;
-  }
-  .group-hover\:animate-rotate-border {
-    &:is(:where(.group):hover *) {
-      @media (hover: hover) {
-        animation: var(--animate-rotate-border);
-      }
-    }
   }
   .group-hover\:p-\[1px\] {
     &:is(:where(.group):hover *) {
@@ -808,6 +799,11 @@
 .animate-background {
   animation: animateBackground 8s ease infinite;
   background: linear-gradient(45deg, #090e14, #112339, #0d131f, #090e14);
+  background-size: 500% 500%;
+}
+.ligth-animate-background {
+  animation: animateBackground 8s ease infinite;
+  background: linear-gradient(45deg, #f5f9ff, #e3ecf8, #f0f5fc, #f5f9ff);
   background-size: 500% 500%;
 }
 @keyframes animateBackground {
@@ -1057,11 +1053,6 @@ html {
   syntax: "*";
   inherits: false;
   initial-value: 0;
-}
-@keyframes border-rotate {
-  to {
-    --border-angle: 360deg;
-  }
 }
 @keyframes animate-appear {
   01% {
