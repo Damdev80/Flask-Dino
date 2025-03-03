@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @property --border-angle {
     syntax: '<angle>';
@@ -9,21 +9,31 @@
     initial-value: 0deg;
 }
 
+:root{ 
+    --bg-tamaño: 500% 500%;
+}
+
 @theme {
+    /* Variables */
+    --bg-size: var(--bg-tamaño);
+    
     --color-primary: #090e14;
     --color-secundary:#112339;
     --text-color-skin:#ece5d2;
     --color-skin:#fff9e2;
-    --text-
     
-    --animate-rotate-border: border-rotate 3s linear infinite;
+    
+    
+    
+    /* Animaciones */
+    --animate-border: border-rotate 3s linear infinite;
 
     @keyframes border-rotate {
         to{
             --border-angle: 360deg;
         }
     }
-    
+
     --animate-appear: animate-appear 1s ease-out;
 
     @keyframes animate-appear {
@@ -36,13 +46,29 @@
     }
 
     
+    --animate-background: animate-background 8s ease infinite;
+    
+
+    @keyframes animate-background {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    
 
     
 }
 
 
 
-.animate-background {
+/* .animate-background {
     animation: animateBackground 8s ease infinite;
     background: linear-gradient(45deg, #090e14, #112339, #0d131f, #090e14);
     background-size: 500% 500%;
@@ -50,9 +76,10 @@
 
 .ligth-animate-background {
     animation: animateBackground 8s ease infinite;
-    background: linear-gradient(45deg, #f5f9ff, #e3ecf8, #f0f5fc, #f5f9ff);
+    background: linear-gradient(45deg, #E3F2FD, #BBDEFB, #90CAF9, #64B5F6);
     background-size: 500% 500%;
-}
+} */
+
 @keyframes animateBackground {
     0% {
         background-position: 0% 50%;

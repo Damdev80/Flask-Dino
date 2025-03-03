@@ -1,15 +1,22 @@
-const themeToggleBtn = document.getElementById('theme-toggle');
-const htmlElement = document.documentElement;
+const buttons = document.querySelectorAll(".theme-btn");
 
-// Al cargar la página, verifica la preferencia guardada
-if (localStorage.getItem('theme') === 'dark') {
-  htmlElement.classList.add('dark');
+function setTheme(theme) {
+  const root = document.documentElement;
+  if (theme === "system") {
+    theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  root.classList.remove("light", "dark");
+  root.classList.add(theme);
+  localStorage.setItem("theme", theme);
 }
 
-themeToggleBtn.addEventListener('click', () => {
-  if (htmlElement.classList.toggle('dark')) {
-    localStorage.setItem('theme', 'dark');
-  } else {
-    localStorage.setItem('theme', 'light');
-  }
+function loadTheme() {
+  const savedTheme = localStorage.getItem("theme") || "system";
+  setTheme(savedTheme);
+}
+
+buttons.forEach(button => {
+  button.addEventListener("click", () => setTheme(button.id));
 });
+
+loadTheme();
