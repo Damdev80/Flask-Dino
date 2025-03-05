@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request, flash, jso
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import db, User, Game  # Asegúrate de importar el modelo User desde models.py
+from models import db, User, Game, Client, Product  # Asegúrate de importar el modelo User desde models.py
 from utils import send_recovery_email
 from datetime import datetime, timedelta, timezone
 import os, secrets
@@ -149,33 +149,79 @@ def test():
     return render_template('test.html')
 
 
-#Ruta para mostrar coleccion de juegos
-@app.route('/categorias')
-def categorias():
-    juegos = Game.query.all()
-    return render_template('categorias.html', juegos=juegos)
 
+#Ruta para el dashboard
 
-@app.route('/dashboard/')
+@app.route('/dashboard')
 def dashboard():
     
     return render_template('dashboard.html')
 
+@app.route('/dashboard/empleados')
+def empleados():
+    return render_template('empleados.html')
 
-@app.route('/api/juegos')
+#Ruta para mostrar coleccion de juegos
+@app.route('/dashboard/categorias')
+def categorias():
+    juegos = Game.query.all()
+    return render_template('categorias.html', juegos=juegos)
+
+@app.route('/dashboard/categorias/nuevo', methods=['GET', 'POST'])
+def new_games():
+    if request.method == 'POST':
+        name = request.form['name']
+        image_url = request.form['image_url']
+        price = float(request.form['price'])
+        
+        if User.query.filter_by(name=name).first():
+            flash('El nombre de usuario ya está en uso.', 'error')
+            return redirect(url_for('new_games')) 
+        
+        nuevo_juego = Game(name=name, image_url=image_url, price=price)
+        db.session.add(nuevo_juego)
+        db.session.commit()
+        
+        flash('Juego agregado correctamente.', 'success')
+        return redirect(url_for('categorias'))
+
+    return render_template('nuevo-juego.html')
+
+@app.route('/dashboard/clientes/', methods=['GET', 'POST'])
+def clientes_show():
+    clientes = Client.query.all()
+    return render_template('clientes.html', clientes=clientes)
+
+@app.route('/api/clientes/')
+def clientes():
+    clients = Client.query.all()  # Debe ser Client, no Game
+    clients_data = [
+        { "id": client.id, "name": client.name, "email": client.email, "img_url": client.img_url }
+        for client in clients
+    ]  
+    return jsonify(clients_data)
+
+@app.route('/dashboard/clientes/nuevo-cliente', methods=['GET', 'POST'])
+def nuevo_cliente():
+    return render_template('nuevo-cliente.html')
+
+# @app.route('/dashboard/productos/')
+# def show_product():
+#     productos = Product.query.all()
+#     productos_json = [{"id": productos.id, "name": productos.name, "img"}]
+    
+    return render_template('productos.html')
+@app.route('/api/juegos')   
 def api_juegos():
     juegos = Game.query.all()
     juegos_json = [{"id": j.id, "name": j.name, "image_url": j.image_url, "price": j.price, "genre": j.genre} for j in juegos]
     return jsonify(juegos_json)
 
 
+
 # Crear las tablas de la base de datos (dentro del contexto de la aplicación)
 with app.app_context():
     db.create_all()  
-
-    
-    
-    
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

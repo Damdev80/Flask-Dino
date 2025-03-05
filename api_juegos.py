@@ -1,38 +1,41 @@
 import requests
-import random
 from app import db, app
-from models import Game
+from models import Client
 
+PEXELS_API_KEY = "Mlt11LB4vgM1Xeegfnq4vMolWzYRhznxUyTFBzJhX1l0UHq1lhigVq95"
+PEXELS_URL = "https://api.pexels.com/v1/search"
 
-API_KEY = "7f1803aa44754a86862da2c0715ca900"
-BASE_URL = "https://api.rawg.io/api/games"
+def get_random_images(query="person", count=10):
+    """ Obtiene múltiples imágenes de Pexels """
+    headers = {"Authorization": PEXELS_API_KEY}
+    params = {"query": query, "per_page": count}
+    response = requests.get(PEXELS_URL, headers=headers, params=params)
 
-def get_games_from_api():
-    """Obtiene juegos desde la API y los guarda en la base de datos"""
-    with app.app_context():  # ⚠️ Activar el contexto de la aplicación
-        url = f"{BASE_URL}?key={API_KEY}"
-        response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        return [photo["src"]["medium"] for photo in data["photos"]] if data["photos"] else []
+    return []
 
-        if response.status_code == 200:
-            data = response.json()
-            for game in data.get("results", []):
-                name = game["name"]
-                image_url = game.get("background_image", "")  # Algunos juegos pueden no tener imagen
-                price = round(random.uniform(10, 60), 2)  # Genera un precio aleatorio
+def populate_clients():
+    """ Agrega nuevos clientes con imágenes aleatorias """
+    clients_data = [
+        {"name": "Carlos Pérez", "email": "carlos.perez@example.com"},
+        {"name": "Mariana López", "email": "mariana.lopez@example.com"},
+        {"name": "Alejandro Torres", "email": "alejandro.torres@example.com"},
+        {"name": "Valeria Gómez", "email": "valeria.gomez@example.com"},
+        {"name": "Santiago Ramírez", "email": "santiago.ramirez@example.com"},
+    ]
 
-                # Verificar si el juego ya está en la base de datos
-                existing_game = Game.query.filter_by(name=name).first()
-                if not existing_game:
-                    new_game = Game(name=name, image_url=image_url)
-                    db.session.add(new_game)
+    with app.app_context():
+        image_urls = get_random_images(count=len(clients_data))
+        
+        for i, client in enumerate(clients_data):
+            img_url = image_urls[i % len(image_urls)] if image_urls else "https://via.placeholder.com/150"
+            new_client = Client(name=client["name"], email=client["email"], img_url=img_url)
+            db.session.add(new_client)
 
-            db.session.commit()
-            print("Juegos guardados en la base de datos.")
-        else:
-            print("Error al obtener los juegos:", response.status_code)
+        db.session.commit()
+        print("✅ Clientes agregados correctamente.")
 
-
-
-# Para probarlo manualmente
 if __name__ == "__main__":
-    get_games_from_api()
+    populate_clients()

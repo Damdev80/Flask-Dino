@@ -36,13 +36,27 @@ class Game(db.Model):
         self.price = price
         
 # Modelo de clientes
-# class Client(db.model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(255), nullable=False)
-#     img_url = db.Column(db.String(500), nullable=False)
-    
-#     def __init__(self, name, img_url):
-#         self.name = name
-#         self.img_url = img_url
+class Client(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    img_url = db.Column(db.String(500), nullable=False)
+    email = db.Column(db.String(150), unique=True, nullable=False)
+  
+    def __init__(self, name, img_url, email):
+        self.name = name
+        self.img_url = img_url
+        self.email = email
         
+#Modelo de productos
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    img_url = db.Column(db.String(500), nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    stock = db.Column(db.Integer, nullable=False)
+    
+    def __init__(self, name, img_url, price):
+        self.name = name
+        self.img_url = img_url
+        self.price = price
         
