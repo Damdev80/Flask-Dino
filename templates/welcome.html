@@ -23,12 +23,14 @@
     </header>
     
     <main>
-        <div class="flex flex-row items-center justify-center min-h-screen text-white text-center px-4 gap-10">
-            <div class="max-w-lg bg-primary/30 backdrop-blur-lg p-10 rounded-lg shadow-lg w-1/2 ml-auto">
+        <div class="flex flex-row items-center justify-center min-h-screen text text-center px-4 gap-10">
+            <div class="max-w-lg  backdrop-blur-lg p-10 rounded-lg shadow-lg w-1/2 ml-auto">
                 <section >
-                    <h1 class="text-4xl font-bold cascadia mb-4">Bienvenido a Dino-Games</h1>
-                    <p class="text-lg text-white/70 cascadia mb-6">Descubre los mejores videojuegos, PCs gaming y consolas Xbox en un solo lugar. Sumérgete en la experiencia definitiva del gaming.</p>
-                    <a href="#juegos" class="bg-secundary hover:bg-secundary/80 transition-all px-6 py-3 rounded-lg text-lg font-semibold">Explorar Juegos</a>
+                    <h1 class="text-4xl text-white  cascadia mb-4">Bienvenido a </h1>
+                    <h2 class="text-4xl  text-white cascadia mb-4">Dino-Games</h2>
+                    <p class="text-lg text-white cascadia mb-6">Descubre los mejores videojuegos, PCs gaming y consolas Xbox en un solo lugar. </p>
+                    <a href="#juegos" class="bg-white hover:bg-white/80 transition-all px-6 py-3 rounded-lg text-lg font-semibold">Explorar Juegos</a>
+                    <a href="#juegos" class="bg-secundary text-white hover:bg-secundary/80 transition-all px-6 py-3 rounded-lg text-lg font-semibold">Documentacion</a>
                 </section>
             </div>
             <div class="w-1/2 mr-auto  px-4 gap-10">
@@ -38,6 +40,62 @@
             </div>
         </div>
     </main>
+    <div class="py-10 bg-primary/20 text-white">
+        <div class="max-w-6xl mx-auto px-5 text-center">
+            <h2 class="text-4xl font-extrabold text-white">🏆 Top Juegos Que No Puedes Perderte 🏆</h2>
+            <p class="text-gray-300 mt-2">
+                Tu tienda gamer definitiva. Explora nuestra colección de videojuegos, consolas y accesorios al mejor precio.
+            </p>
+        </div>
+    
+        <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-10">
+            
+            <div class="bg-primary/30 backdrop-blur-lg rounded-lg shadow-lg p-6 text-center border border-secundary">
+                <img class="w-full h-40 object-cover rounded-lg" src="{{url_for('static',filename='img/carta1.jpg')}}" alt="Juego 1">
+                <h5 class="text-lg font-semibold mt-4">The Legend of Zelda: Breath of the Wild</h5>
+                <p class="text-sm text-gray-300">Explora Hyrule en esta increíble.</p>
+                <a href="/tienda" class="bg-secundary text-white px-4 py-2 rounded-lg mt-4 inline-block hover:bg-primary transition">
+                    Ver más 🎮
+                </a>
+            </div>
+    
+
+            <div class="bg-primary/30 backdrop-blur-lg rounded-lg shadow-lg p-6 text-center border border-secundary">
+                <img class="w-full h-40 object-cover rounded-lg" src="{{url_for('static',filename='img/carta2.jpeg')}}" alt="Juego 2">
+                <h5 class="text-lg font-semibold mt-4">Elden Ring</h5>
+                <p class="text-sm text-gray-300">Sumérgete en un mundo de fantasía y desafíos.</p>
+                <a href="/tienda" class="bg-secundary text-white px-4 py-2 rounded-lg mt-4 inline-block hover:bg-primary transition">
+                    Ver más 🎮
+                </a>
+            </div>
+    
+
+            <div class="bg-primary/30 backdrop-blur-lg rounded-lg shadow-lg p-6 text-center border border-secundary">
+                <img class="w-full h-40 object-cover rounded-lg" src="{{url_for('static',filename='img/carta3.jpeg')}}" alt="Juego 3">
+                <h5 class="text-lg font-semibold mt-4">God of War: Ragnarök</h5>
+                <p class="text-sm text-gray-300">Acompaña a Kratos en su nueva aventura.</p>
+                <a href="/tienda" class="bg-secundary text-white px-4 py-2 rounded-lg mt-4 inline-block hover:bg-primary transition">
+                    Ver más 🎮
+                </a>
+            </div>
+
+            <div class="bg-primary/30 backdrop-blur-lg rounded-lg shadow-lg p-6 text-center border border-secundary">
+                <img class="w-full h-40 object-cover rounded-lg" src="{{url_for('static',filename='img/carta4.jpeg')}}" alt="Juego 3">
+                <h5 class="text-lg font-semibold mt-4">Clash Royale</h5>
+                <p class="text-sm text-gray-300">Diviertete en un mundo lleno de magia.</p>
+                <a href="/tienda" class="bg-secundary text-white px-4 py-2 rounded-lg mt-4 inline-block hover:bg-primary transition">
+                    Ver más 🎮
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+                <!-- Agrega más cards aquí si es necesario -->
+            </div>
+        </div>
+    </div>
     
     <footer class="mt-6 text-center text-gray-500 text-sm cascadia">
         © 2025 TuEmpresa. Todos los derechos reservados.<br>
