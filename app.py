@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request, flash, jso
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import db, User, Game, Client, Product  # Asegúrate de importar el modelo User desde models.py
+from models import db, User, Game, Client, Product, Empleado  # Asegúrate de importar el modelo User desde models.py
 from utils import send_recovery_email
 from datetime import datetime, timedelta, timezone
 import os, secrets
@@ -157,9 +157,9 @@ def dashboard():
     
     return render_template('dashboard.html')
 
-@app.route('/dashboard/empleados')
-def empleados():
-    return render_template('empleados.html')
+@app.route('/dashboard/usuarios')
+def usuarios():
+    return render_template('usuarios.html')
 
 #Ruta para mostrar coleccion de juegos
 @app.route('/dashboard/categorias')
@@ -187,30 +187,72 @@ def new_games():
 
     return render_template('nuevo-juego.html')
 
-@app.route('/dashboard/clientes/', methods=['GET', 'POST'])
+@app.route('/dashboard/usuarios/', methods=['GET', 'POST'])
 def clientes_show():
-    clientes = Client.query.all()
-    return render_template('clientes.html', clientes=clientes)
+    usuarios = Client.query.all()
+    return render_template('usuarios.html', usuarios=usuarios)
 
 @app.route('/api/clientes/')
 def clientes():
-    clients = Client.query.all()  # Debe ser Client, no Game
+    clients = Client.query.all()  
     clients_data = [
         { "id": client.id, "name": client.name, "email": client.email, "img_url": client.img_url }
         for client in clients
     ]  
     return jsonify(clients_data)
 
-@app.route('/dashboard/clientes/nuevo-cliente', methods=['GET', 'POST'])
-def nuevo_cliente():
-    return render_template('nuevo-cliente.html')
 
 # @app.route('/dashboard/productos/')
 # def show_product():
 #     productos = Product.query.all()
 #     productos_json = [{"id": productos.id, "name": productos.name, "img"}]
+#     return jsonify(productos_json)
     
-    return render_template('productos.html')
+    #return render_template('productos.html')
+    
+@app.route('/dashboard/usuario/', methods=['GET', 'POST'])
+def show_usuario():
+    usuario = User.query.all()
+    return render_template('usuarios.html', usuario=usuario)
+
+@app.route('/api/usuario', methods=['GET', 'POST'])
+def api_usuario():
+    usuario = User.query.all()
+    usuario_json = [{"id": User.id, "username": User.username, "email": User.email} for User in usuario]
+    return jsonify(usuario_json)
+
+
+    
+
+# Ruta para eliminar un usuario
+@app.route('/dashboard/usuario/eliminar/<int:id>', methods=['POST'])
+def eliminar_usuario(id):
+    usuario = User.query.get(id)
+    if usuario:
+        db.session.delete(usuario)
+        db.session.commit()
+        flash('Usuario eliminado correctamente.', 'success')
+    else:
+        flash('Usuario no encontrado.', 'danger')
+    
+    return redirect(url_for('show_usuarios'))
+
+
+# Ruta para actualizar un usuario
+@app.route('/dashboard/usuario/editar/<int:id>', methods=['POST'])
+def editar_usuario(id):
+    usuario = User.query.get(id)
+    if usuario:
+        usuario.username = request.form['username']
+        usuario.email = request.form['email']
+        db.session.commit()
+        flash('Usuario actualizado correctamente.', 'success')
+    else:
+        flash('Error al actualizar usuario.', 'danger')
+
+    return redirect(url_for('show_usuarios'))
+
+
 @app.route('/api/juegos')   
 def api_juegos():
     juegos = Game.query.all()
@@ -218,7 +260,36 @@ def api_juegos():
     return jsonify(juegos_json)
 
 
+@app.route('/dashboard/empleado/')
+def show_empleado():
+    empleados = Empleado.query.all()
+    return render_template('empleado.html', empleados=empleados)
 
+@app.route('/api/empleado', methods=['GET', 'POST'])
+def api_empleado():
+    empleados = Empleado.query.all()
+    empleado_json = [{"id": Empleado.id, "name": Empleado.name, "email": Empleado.email, "phone": Empleado.phone, "address": Empleado.address, "job": Empleado.job} for Empleado in empleados]
+    return jsonify(empleado_json)
+
+@app.route('/dashboard/empleado/nuevo/')
+def nuevo_empleado():
+    return render_template('nuevo-empleado.html')
+
+@app.route('/dashboard/empleado/nuevo/', methods=['POST'])
+def crear_empleado():
+    name = request.form['name']
+    img_url = request.form['img_url']
+    email = request.form['email']
+    phone = request.form['phone']
+    address = request.form['address']
+    job = request.form['job']
+    
+    nuevo_empleado = Empleado(name=name, img_url=img_url, email=email, phone=phone, address=address, job=job)
+    db.session.add(nuevo_empleado)
+    db.session.commit()
+    
+    flash('Empleado agregado correctamente.', 'success')
+    return redirect(url_for('show_empleado'))
 # Crear las tablas de la base de datos (dentro del contexto de la aplicación)
 with app.app_context():
     db.create_all()  

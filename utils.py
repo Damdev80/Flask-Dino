@@ -1,20 +1,9 @@
 # utils.py
 import random
-from models import db, Purchase
 import requests
 
 
-def save_purchase(user_id, game_data):
-    hypothetical_price = round(random.uniform(10, 60), 2)  # Precio aleatorio entre 10 y 60
 
-    new_purchase = Purchase(
-        user_id=user_id,
-        game_id=game_data["id"],
-        game_title=game_data["title"],
-        price=hypothetical_price  # Precio ficticio
-    )
-    db.session.add(new_purchase)
-    db.session.commit()
 
 #Api para enviar la contraseña al correo
 

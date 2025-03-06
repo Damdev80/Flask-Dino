@@ -49,13 +49,31 @@
     </header>
     <main>
       <div class="container mx-auto p-6 w-full flex flex-col justify-center items-center h-auto mt-20 overflow-hidden">
-        <h1 class="text-3xl font-bold mb-6">Lista de Clientes</h1>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
-            {% for client in clientes %}
-                <div class="bg-white p-4 rounded-lg shadow-md">
-                    <img src="{{ client.img_url }}" alt="{{ client.name }}" class="w-full h-40 object-cover rounded-md">
-                    <h2 class="text-xl font-semibold mt-2">{{ client.name }}</h2>
-                    <p class="text-gray-600">{{ client.email }}</p>
+        <h1 class="text-3xl font-bold mb-6">Lista de Usuarios</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full justify-center items-center">
+            {% for User in usuario %}
+                <div class="bg-white p-4 rounded-lg shadow-md w-auto flex items-center">
+                    <div class="flex flex-col w-4/5 "> 
+                      <h2 class="text-2xl font-semibold mt-2 text-black">{{ User.username }}</h2>
+                    <p class="text-gray-600 text-lg">{{ User.email }}</p>
+                    </div>
+                    <div class="flex flex-col w-1/5 justify-center items-center">
+                      <a href="" class="w-10 h-10 flex justify-center items-center my-1 text-blue-500 hover:underline bg-sky-300 rounded-sm active:translate-y-1 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                        </svg>
+                        
+                      </a>
+                      <form action="">
+                        <button type="submit" class="w-10 h-10 flex justify-center items-center my-1 text-red-500 hover:underline bg-rose-300 rounded-sm active:tranlate-y-1 transition-all">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                          </svg>
+                          
+                        </button>
+                      </form>
+                      
+                    </div>
                 </div>
             {% endfor %}
         </div>

@@ -13,15 +13,13 @@ class User(db.Model, UserMixin):
     # Campos para la recuperación de contraseña
     reset_token = db.Column(db.String(100), nullable=True)
     reset_expiration = db.Column(db.DateTime, nullable=True)
+    
+    def __init__(self, username, email, password):
+        self.username = username
+        self.email = email
+        self.password = password
 
 
-# Modelo de Compra
-class Purchase(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    game_id = db.Column(db.Integer, nullable=False)
-    game_title = db.Column(db.String(120), nullable=False)
-    price = db.Column(db.Float, nullable=False)
 
 # Modelo de Juegos
 class Game(db.Model):
@@ -59,4 +57,22 @@ class Product(db.Model):
         self.name = name
         self.img_url = img_url
         self.price = price
+        
+#Modelo de empleados
+class Empleado(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    img_url = db.Column(db.String(500), nullable=False)
+    email = db.Column(db.String(150), unique=True, nullable=False)
+    phone = db.Column(db.String(150), nullable=False)
+    address = db.Column(db.String(255), nullable=False)
+    job = db.Column(db.String(255), nullable=False)
+    
+    def __init__(self, name, img_url, email, phone, address, job):
+        self.name = name
+        self.img_url = img_url
+        self.email = email
+        self.phone = phone
+        self.address = address
+        self.job = job
         
