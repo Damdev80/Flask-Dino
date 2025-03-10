@@ -174,7 +174,7 @@ def new_games():
         image_url = request.form['image_url']
         price = float(request.form['price'])
         
-        if User.query.filter_by(name=name).first():
+        if Game.query.filter_by(name=name).first():
             flash('El nombre de usuario ya está en uso.', 'error')
             return redirect(url_for('new_games')) 
         

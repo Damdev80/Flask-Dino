@@ -52,9 +52,11 @@
         <h1 class="text-3xl font-bold mb-6">Lista de Usuarios</h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full justify-center items-center">
             {% for Empleado in empleados %}
-                <div class="bg-white p-4 rounded-lg shadow-md w-auto flex items-center justify-center">
-                    <div class="flex flex-col w-4/5 "> 
-                      <img src="{{ Empleado.img_url }}" alt="{{Empleado.img_url}}" class="object-cover w-full h-full rounded-lg   transition-all ">
+                <div class="bg-white  p-4 rounded-lg shadow-md w-auto h-auto flex items-center justify-center">
+                    <div class="flex flex-col w-4/5 h-[200px] justify-center items-center">
+                      <div class="h-1/2 w-4/5">
+                        <img src="{{ Empleado.img_url }}" alt="{{Empleado.img_url}}" class="object-cover w-full h-full rounded-lg ">
+                      </div> 
                       <h2 class="text-2xl font-semibold mt-2 text-black">{{ Empleado.username }}</h2>
                       <p class="" > {{Empleado.job}} </p>
                     <p class="text-gray-600 text-lg">{{ Empleado.email }}</p>
