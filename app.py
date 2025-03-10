@@ -82,7 +82,7 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-# Ruta para la recuperación de contraseña (si decides implementarla)
+# Ruta para la recuperación de contraseña 
 @app.route('/recover', methods=['GET', 'POST'])
 def recover_password():
     if request.method == 'POST':
@@ -151,7 +151,6 @@ def test():
 
 
 #Ruta para el dashboard
-
 @app.route('/dashboard')
 def dashboard():
     
@@ -161,7 +160,7 @@ def dashboard():
 def usuarios():
     return render_template('usuarios.html')
 
-#Ruta para mostrar coleccion de juegos
+#Modelo de juego y el CRUD
 @app.route('/dashboard/categorias')
 def categorias():
     juegos = Game.query.all()
@@ -201,14 +200,13 @@ def clientes():
     ]  
     return jsonify(clients_data)
 
+@app.route('/api/juegos')   
+def api_juegos():
+    juegos = Game.query.all()
+    juegos_json = [{"id": j.id, "name": j.name, "image_url": j.image_url, "price": j.price, "genre": j.genre} for j in juegos]
+    return jsonify(juegos_json)
 
-# @app.route('/dashboard/productos/')
-# def show_product():
-#     productos = Product.query.all()
-#     productos_json = [{"id": productos.id, "name": productos.name, "img"}]
-#     return jsonify(productos_json)
-    
-    #return render_template('productos.html')
+#Modelo de usuarios y su CRUD
     
 @app.route('/dashboard/usuario/', methods=['GET', 'POST'])
 def show_usuario():
@@ -220,9 +218,6 @@ def api_usuario():
     usuario = User.query.all()
     usuario_json = [{"id": User.id, "username": User.username, "email": User.email} for User in usuario]
     return jsonify(usuario_json)
-
-
-    
 
 # Ruta para eliminar un usuario
 @app.route('/dashboard/usuario/eliminar/<int:id>', methods=['POST'])
@@ -253,12 +248,9 @@ def editar_usuario(id):
     return redirect(url_for('show_usuarios'))
 
 
-@app.route('/api/juegos')   
-def api_juegos():
-    juegos = Game.query.all()
-    juegos_json = [{"id": j.id, "name": j.name, "image_url": j.image_url, "price": j.price, "genre": j.genre} for j in juegos]
-    return jsonify(juegos_json)
 
+
+# Modelo de empleado  y su CRUD
 
 @app.route('/dashboard/empleado/')
 def show_empleado():
@@ -290,9 +282,42 @@ def crear_empleado():
     
     flash('Empleado agregado correctamente.', 'success')
     return redirect(url_for('show_empleado'))
+
+
+#Modelo de productos
+@app.route('/dashboard/productos/')
+def show_productos():
+    productos = Product.query.all()
+    return render_template('productos.html', productos=productos)
+
+@app.route('/api/productos')
+def api_productos():
+    productos = Product.query.all()
+    productos_json = [{"id": Product.id, "name": Product.name, "img_url": Product.img_url, "price": Product.price, "stock": Product.stock} for Product in productos]
+    return jsonify(productos_json)   
+
+
+@app.route('/dashboard/productos/nuevo')
+def nuevo_producto():
+    render_template("nuevo_producto.html")
+
+@app.route('/dashboard/productos/nuevo0')
+def crear_producto():
+    name = request.form['name']
+    price = request.form['price']
+    img_url = request.form['img_url']
+    stock = request.form['stock']
+    
+    nuevo_producto = Product(name=name, price=price, img_url=img_url, stock=stock)
+    db.session.add(nuevo_producto)
+    db.session.commit()
+    
+    flash('Producto agregado correctamente.', 'success')
+    return redirect(url_for('show_productos'))
+    
 # Crear las tablas de la base de datos (dentro del contexto de la aplicación)
 with app.app_context():
-    db.create_all()  
+    db.create_all()
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

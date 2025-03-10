@@ -53,10 +53,11 @@ class Product(db.Model):
     price = db.Column(db.Float, nullable=False)
     stock = db.Column(db.Integer, nullable=False)
     
-    def __init__(self, name, img_url, price):
+    def __init__(self, name, img_url, price, stock):
         self.name = name
         self.img_url = img_url
         self.price = price
+        self.stock = stock
         
 #Modelo de empleados
 class Empleado(db.Model):

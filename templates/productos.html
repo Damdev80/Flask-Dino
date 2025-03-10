@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='output.css')}}">
 </head>
-<body class="dark:bg-linear-[45deg,_#090e14,_#112339,_#0d131f,_#090e14] bg-linear-[45deg,_#E3F2FD,_#BBDEFB,_#90CAF9,_#64B5F6] bg-(length:--bg-size) animate-background ">
+<body class="h-screen dark:bg-linear-[45deg,_#090e14,_#112339,_#0d131f,_#090e14] bg-linear-[45deg,_#E3F2FD,_#BBDEFB,_#90CAF9,_#64B5F6] bg-(length:--bg-size) animate-background ">
     <header>
         <ul class="w-full h-16 flex items-center justify-between bg-primary/20 text-white backdrop-blur-lg fixed top-0 z-10">
             <li class="ml-10 cascadia flex items-center"><img src="{{url_for('static',filename='img/logo-dino.svg')}}"
