@@ -47,8 +47,27 @@
             </div>
         </ul>
     </header>
-    <main>
-
+    <main class="w-4/5 h-[90%] mx-auto flex flex-col justify-center items-center">
+      <div class="w-full h-20 flex justify-evenly items-center">
+        <a href="/dashboard" class="dark:text-white cascadia text-lg bg-secundary/80 hover:bg-secundary p-1 px-2 rounded-lg transition-all"> <- Volver </a>
+        <h1 class="dark:text-white cascadia text-2xl">Lista de productos</h1>
+        <a href="/dashboard/productos/nuevo" class="dark:text-white bg-emerald-950 hover:bg-emerald-800 p-1 px-2 rounded-lg cascadia text-lg transition-all"> Agregar Prodcuto</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full content-center">
+        
+        {% for Product in productos %}
+                <div class="bg-secundary/90  p-4 rounded-lg shadow-md w-auto h-auto flex items-center justify-center">
+                    <div class="flex flex-col w-4/5 h-[200px] justify-center items-center">
+                      <div class="h-1/2 w-4/5">
+                        <img src="{{ Product.img_url }}" alt="{{Product.img_url}}" class="object-cover w-full h-full rounded-lg ">
+                      </div> 
+                      <h2 class="text-2xl font-semibold mt-2 text-black dark:text-white">{{ Product.name }}</h2>
+                      <p class="cascadia text-xl dark:text-white/50" > Precio: ${{Product.price}} </p>
+                    <p class="text-gray-600 text-lg cascadia">Cantidad: {{ Product.stock }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+      </div>
     </main>
     
     <footer class="mt-6 text-center text-gray-500 text-sm cascadia">

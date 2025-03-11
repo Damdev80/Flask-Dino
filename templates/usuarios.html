@@ -49,13 +49,17 @@
     </header>
     <main>
       <div class="container mx-auto p-6 w-full flex flex-col justify-center items-center h-auto mt-20 overflow-hidden">
-        <h1 class="text-3xl font-bold mb-6">Lista de Usuarios</h1>
+        <div class="w-full h-20 flex justify-evenly items-center">
+          <a href="/dashboard" class="dark:text-white cascadia text-lg bg-secundary/80 hover:bg-secundary p-1 px-2 rounded-lg transition-all"> <- Volver </a>
+          <h1 class="dark:text-white cascadia text-2xl font-bold">Lista de usuario</h1>
+          <a href="/dashboard/productos/nuevo" class=""> </a>
+        </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full justify-center items-center">
             {% for User in usuario %}
-                <div class="bg-white p-4 rounded-lg shadow-md w-auto flex items-center">
+                <div class="bg-white dark:bg-secundary p-4 rounded-lg shadow-md w-auto flex items-center">
                     <div class="flex flex-col w-4/5 "> 
-                      <h2 class="text-2xl font-semibold mt-2 text-black">{{ User.username }}</h2>
-                    <p class="text-gray-600 text-lg">{{ User.email }}</p>
+                      <h2 class="text-2xl font-semibold mt-2 dark:text-white text-black cascadia">{{ User.username }}</h2>
+                    <p class="dark:text-gray-600 text-lg cascadia">{{ User.email }}</p>
                     </div>
                     <div class="flex flex-col w-1/5 justify-center items-center">
                       <a href="" class="w-10 h-10 flex justify-center items-center my-1 text-blue-500 hover:underline bg-sky-300 rounded-sm active:translate-y-1 transition-all">

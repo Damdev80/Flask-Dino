@@ -49,18 +49,21 @@
     </header>
     <main>
       <div class="container mx-auto p-6 w-full flex flex-col justify-center items-center h-auto mt-20 overflow-hidden">
-        <h1 class="text-3xl font-bold mb-6">Lista de Usuarios</h1>
+        
+        <div class="w-full h-20 flex justify-evenly items-center">
+          <a href="/dashboard" class="dark:text-white cascadia text-lg bg-secundary/80 hover:bg-secundary p-1 px-2 rounded-lg transition-all"> <- Volver </a>
+          <h1 class="dark:text-white cascadia text-2xl">Lista de Empleados</h1>
+          <a href="/dashboard/empleado/nuevo" class="dark:text-white bg-emerald-950 hover:bg-emerald-800 p-1 px-2 rounded-lg cascadia text-lg transition-all"> Agregar empleado</a>
+        </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full justify-center items-center">
             {% for Empleado in empleados %}
-                <div class="bg-white  p-4 rounded-lg shadow-md w-auto h-auto flex items-center justify-center">
-                    <div class="flex flex-col w-4/5 h-[200px] justify-center items-center">
-                      <div class="h-1/2 w-4/5">
+                <div class="bg-sky-700 dark:bg-secundary px-2 py-1 rounded-lg  w-auto h-[400px] flex flex-col items-center justify-center">
+                      <div class="h-[70%] w-full">
                         <img src="{{ Empleado.img_url }}" alt="{{Empleado.img_url}}" class="object-cover w-full h-full rounded-lg ">
                       </div> 
-                      <h2 class="text-2xl font-semibold mt-2 text-black">{{ Empleado.username }}</h2>
-                      <p class="" > {{Empleado.job}} </p>
+                      <h2 class="text-2xl font-semibold mt-2 text-black dark:text-white">{{ Empleado.username }}</h2>
+                      <p class="text-2xl dark:text-white cascadia" > {{Empleado.job}} </p>
                     <p class="text-gray-600 text-lg">{{ Empleado.email }}</p>
-                    </div>
                 </div>
             {% endfor %}
         </div>

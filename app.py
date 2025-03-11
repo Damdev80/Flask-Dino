@@ -299,9 +299,9 @@ def api_productos():
 
 @app.route('/dashboard/productos/nuevo')
 def nuevo_producto():
-    render_template("nuevo_producto.html")
+    return render_template("nuevo-producto.html")
 
-@app.route('/dashboard/productos/nuevo0')
+@app.route('/dashboard/productos/nuevo', methods=['POST'])
 def crear_producto():
     name = request.form['name']
     price = request.form['price']
