@@ -220,33 +220,39 @@ def api_usuario():
     return jsonify(usuario_json)
 
 # Ruta para eliminar un usuario
-@app.route('/dashboard/usuario/eliminar/<int:id>', methods=['POST'])
-def eliminar_usuario(id):
-    usuario = User.query.get(id)
-    if usuario:
-        db.session.delete(usuario)
-        db.session.commit()
-        flash('Usuario eliminado correctamente.', 'success')
-    else:
-        flash('Usuario no encontrado.', 'danger')
+@app.route('/dashboard/usuario/desactivar/<int:user_id>', methods=['POST'])
+def desactivar_usuario(user_id):
+    usuario = User.query.get(user_id)
     
-    return redirect(url_for('show_usuarios'))
+    if not usuario:
+        flash("Usuario no encontrado", "error")
+        return redirect(url_for('dashboard'))  # Redirigir a donde tengas tu lista de usuarios
 
+    usuario.is_active = False  # Cambiar el estado a inactivo
+    db.session.commit()
+
+    flash("Usuario desactivado correctamente", "success")
+    return redirect(url_for('dashboard'))  # Redirigir a la lista de usuarios
 
 # Ruta para actualizar un usuario
-@app.route('/dashboard/usuario/editar/<int:id>', methods=['POST'])
+@app.route('/dashboard/usuario/editar/<int:id>', methods=['GET', 'POST'])
 def editar_usuario(id):
-    usuario = User.query.get(id)
-    if usuario:
-        usuario.username = request.form['username']
-        usuario.email = request.form['email']
-        db.session.commit()
-        flash('Usuario actualizado correctamente.', 'success')
-    else:
-        flash('Error al actualizar usuario.', 'danger')
+    usuario = User.query.get_or_404(id)  # Si no encuentra el usuario, devuelve un error 404
 
-    return redirect(url_for('show_usuarios'))
+    if request.method == 'POST':
+        username = request.form.get('username')
+        email = request.form.get('email')
 
+        if username and email:  # Aseguramos que no sean valores vacíos
+            usuario.username = username
+            usuario.email = email
+            db.session.commit()
+            flash('Usuario actualizado correctamente.', 'success')
+            return redirect(url_for('show_usuario'))
+        else:
+            flash('Todos los campos son obligatorios.', 'danger')
+
+    return render_template('editar_usuario.html', usuario=usuario)
 
 
 

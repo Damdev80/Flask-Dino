@@ -42,17 +42,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ------------------------
 
-function editarUsuario(id, username, email) {
-  document.getElementById('editUserId').value = id;
-  document.getElementById('editUsername').value = username;
-  document.getElementById('editEmail').value = email;
-  document.getElementById('editForm').action = `/dashboard/usuario/editar/${id}`;
-  
-  const modal = document.getElementById('editModal');
-  modal.classList.remove('opacity-0', 'pointer-events-none');
-}
-
-function cerrarModal() {
-  const modal = document.getElementById('editModal');
-  modal.classList.add('opacity-0', 'pointer-events-none');
-}
+//------Prueba------

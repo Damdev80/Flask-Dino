@@ -12,31 +12,25 @@
         <ul class="w-full h-16 flex items-center justify-between bg-primary/20 text-white backdrop-blur-lg fixed top-0 z-10">
             <li class="ml-10 cascadia flex items-center"><img src="{{url_for('static',filename='img/logo-dino.svg')}}"
                     alt=""><a href="/" class="pl-2">Icone</a></li>
-            <div class=" w-[480px] flex items-center justify-between  mr-10">
-                <li class=" "><a href="/" class="hover:bg-secundary transition-all px-5 py-2 mx-3 rounded cascadia text-nowrap">About us</a>
-                </li>
-                <li class=""><a href="#juegos" class="hover:bg-secundary transition-all  px-5 py-2 mx-3 rounded cascadia">Juegos</a>
-                </li>
-                <li class=""><a href="/login" class="hover:bg-secundary transition-all p-3 mx-3 rounded text-nowrap cascadia">Log out</a>
-                </li>
+            
                 <li>
-                    <div class="relative flex justify-center items-center bg-sky-700 dark:bg-gray-800 p-1 rounded-full w-[140px]">
+                    <div class="relative flex justify-center mr-7 items-center bg-sky-700 dark:bg-gray-800 p-1 rounded-full w-[140px]">
                         <!-- Indicador Deslizante con Sombra -->
                        
                         <!-- Botones -->
-                        <button id="system" class="theme-btn relative z-10 w-10 h-10 flex justify-center items-center text-gray-900 dark:text-white transition-colors duration-300">
+                        <button id="system" class="theme-btn relative z-10 w-10 h-10 flex justify-center items-center text-white/50 dark:text-white transition-colors duration-300">
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
                           </svg>
                           
                         </button>
-                        <button id="light" class="theme-btn relative z-10 w-10 h-10 flex justify-center items-center text-gray-900 dark:text-white transition-colors duration-300" alt="">
+                        <button id="light" class="theme-btn relative z-10 w-10 h-10 flex justify-center items-center text-white/50 dark:text-white transition-colors duration-300" alt="">
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
                           </svg>
                           
                         </button >
-                        <button id="dark" class="theme-btn relative z-10 w-10 h-10 flex justify-center items-center text-gray-900 dark:text-white transition-colors duration-300">
+                        <button id="dark" class="theme-btn relative z-10 w-10 h-10 flex justify-center items-center text-white/50 dark:text-white transition-colors duration-300">
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
                           </svg>
@@ -44,15 +38,18 @@
                         </button>
                       </div>
                 </li>
-            </div>
+            
         </ul>
     </header>
     <main>
         <form action="" method="POST">
             <div class="w-full h-screen flex flex-col items-center justify-center">
-                <div class="  sm:w-3/6 sm: sm:h-[580px] h-[650px] w-[550px] lg:w-[660px] md:w-[750px] bg-secundary/70 backdrop-blur-2xl rounded-2xl flex flex-col items-center justify-evenly m-auto shadow-amber-50 ">
-                    <img src="/static/img/logo-dino.svg" alt="" class="w-[150px] h-[150px] rounded-full z-10" />
-                    <p class="cascadia text-2xl text-white text-center my-1">Inicia sesión</p>
+                <div class="  sm:w-3/6 mt-20 sm:h-[580px] h-[650px] w-[550px] lg:w-[660px] md:w-[750px] bg-primary/20 dark:bg-secundary/70 backdrop-blur-2xl rounded-2xl flex flex-col items-center justify-evenly m-auto shadow-amber-50 ">
+                    <div class="w-40 h-40 rounded-full  ">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" stroke="currentColor" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" clip-rule="evenodd" viewBox="0 0 441 441"><path fill="#000" d="M229.858-2.62c121.29 5.675 215.154 108.755 209.479 230.045S330.582 442.578 209.292 436.903-5.863 328.149-.188 206.859 108.568-8.296 229.858-2.62Zm51.365 264.922c-13.886-.687-27.594-3.012-38.616-4.857-8.381-1.404-16.33-3.616-22.855-5.858a2.576 2.576 0 0 0-2.932.878c-.678.905-.777 2.22-.02 3.061 3.08 3.418 12.848 10.54 20.439 13.812-6.491 5.357-10.933 17.608-12.684 23.95-2.35 8.51-2.687 20.801-2.12 25.312 2.282 18.146 8.95 34.41 25.467 48.64 11.562 9.96 28.295 16.77 45.399 17.08 23.603.426 51.882-9.705 74.085-32.493 29.028-31.807 48.051-73.17 51.593-119.393 8.434-110.06-74.073-206.264-184.134-214.698C124.785 9.302 28.582 91.81 20.147 201.87c-4.368 56.998 15.655 110.28 51.267 149.576a3.185 3.185 0 0 0 5.422-2.974c-26.39-103.487 30.95-215.162 94.926-250.494 23.751-13.118 46.884-18.1 67.664-9.69 31.814 12.874 50 34.21 89.375 52.163 39.375 17.951 43.625 47.862 32.64 78.098-10.986 30.236-46.358 45.425-80.218 43.753Zm-68.863-160.08c-12.906 1.006-21.384 16.978-22.497 27.253-1.117 10.275 3.978 27.236 20.794 26.91 19.694-.383 25.681-17.238 23.525-33.55-1.618-12.25-11.033-21.456-21.822-20.613Z"/></svg>
+                    </div>
+                    
+                    <p class="cascadia text-2xl text-gray-950 dark:text-white text-center my-1">Inicia sesión</p>
                     
                     <div class="w-3/5 h-auto flex flex-col items-center justify-center ">
                         <label for="" class="cascadia text-lg self-start text-white/70 my-1.5">Nombre</label>

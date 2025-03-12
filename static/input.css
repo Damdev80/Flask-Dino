@@ -16,7 +16,7 @@
 @theme {
     /* Variables */
     --bg-size: var(--bg-tamaño);
-    
+    --color-ligth:#7ab2ff;
     --color-primary: #090e14;
     --color-secundary:#112339;
     --text-color-skin:#ece5d2;
