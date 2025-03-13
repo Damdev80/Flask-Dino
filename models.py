@@ -27,11 +27,13 @@ class Game(db.Model):
     name = db.Column(db.String(255), nullable=False, unique=True)
     image_url = db.Column(db.String(500), nullable=False)
     price = db.Column(db.Float, nullable=False)
+    categoria = db.Column(db.String(100), nullable=False)
 
-    def __init__(self, name, image_url, price):
+    def __init__(self, name, image_url, price, categoria):
         self.name = name
         self.image_url = image_url
         self.price = price
+        self.categoria = categoria
         
 # Modelo de clientes
 class Client(db.Model):

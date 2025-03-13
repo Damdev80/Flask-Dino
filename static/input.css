@@ -13,6 +13,13 @@
     --bg-tamaño: 500% 500%;
 }
 
+
+@layer components {
+    .alert {
+        background-color: var();
+    }
+}
+
 @theme {
     /* Variables */
     --bg-size: var(--bg-tamaño);

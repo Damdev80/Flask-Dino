@@ -48,3 +48,10 @@ window.addEventListener('click', (e) => {
   }
 });
 
+
+
+//-----------------
+fetch('/welcome')
+  .then(response => response.json())
+  .then(data => console.log(data))  // <-- Verifica que los datos llegan
+  .catch(error => console.error('Error:', error));

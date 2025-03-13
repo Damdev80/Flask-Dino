@@ -50,36 +50,36 @@
     <main>
       <div class="container mx-auto p-6 w-full flex flex-col justify-center items-center h-auto mt-20 overflow-hidden">
         <div class="w-full h-20 flex justify-evenly items-center">
-          <a href="/dashboard" class="dark:text-white cascadia text-lg bg-secundary/80 hover:bg-secundary p-1 px-2 rounded-lg transition-all"> <- Volver </a>
-          <h1 class="dark:text-white cascadia text-2xl font-bold">Lista de usuario</h1>
+          <a href="/dashboard" class="dark:text-white cascadia text-lg  bg-gray-100 dark:bg-secundary/80  dark:hover:bg-secundary p-1 px-2 rounded-lg transition-all"> <- Volver </a>
+          <h1 class="dark:text-white cascadia text-2xl font-bold text-white">Lista de usuario</h1>
           <a href="/dashboard/productos/nuevo" class=""> </a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full justify-center items-center">
           {% for user in usuario %}
-          <div class="bg-white dark:bg-secundary p-4 rounded-lg shadow-md w-auto flex items-center">
+          <div class="bg-secundary/20 dark:bg-secundary p-4 rounded-lg shadow-md w-auto flex items-center">
               <div class="flex flex-col w-4/5 "> 
                   <h2 class="text-2xl font-semibold mt-2 dark:text-white text-black cascadia">{{ user.username }}</h2>
-                  <p class="dark:text-gray-600 text-lg cascadia">{{ user.email }}</p>
+                  <p class="dark:text-gray-600 text-lg cascadia ">{{ user.email }}</p>
               </div>
-              <div class="flex flex-col w-1/5 justify-center items-center">
+              <div class="flex flex-col w-1/5 justify-center items-center ">
                   <button onclick="openModal({{ user.id }})" class="w-10 h-10 flex justify-center items-center my-1 text-blue-500 hover:underline bg-sky-300 rounded-sm active:translate-y-1 transition-all">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                           <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                       </svg>
                   </button>
-                <div id="modal-{{ user.id }}" class="fixed inset-0 dark:bg-secundary hidden flex-col h-1/2 w-1/2 justify-center  items-center rounded-lg m-auto  py-4 px-3">
+                <div id="modal-{{ user.id }}" class="fixed inset-0 bg-white/80 backdrop-blur-md dark:bg-secundary hidden flex-col h-1/2 w-1/2 justify-center  items-center rounded-lg m-auto  py-4 px-3">
                   
                     <form action="{{ url_for('editar_usuario', id=user.id) }}" method="POST" class=" w-full h-full flex flex-col justify-evenly items-center">
-                      <h2 class="text-2xl font-bold text-center text-gray-100 cascadia mb-4">Editar Usuario</h2>
+                      <h2 class="text-2xl font-bold text-center dark:text-gray-100 cascadia mb-4">Editar Usuario</h2>
                         <div class="w-full h-full">
-                            <label for="username" class="block text-gray-100 font-medium cascadia">Editar nombre de usuario:</label>
+                            <label for="username" class="block dark:text-gray-100 font-medium cascadia">Editar nombre de usuario:</label>
                             <input type="text" id="username" name="username" value="{{ usuario.username }}" required
-                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-white outline-none cascadia">
+                                class="w-full px-3 py-2 border  dark:border-gray-50 border-gray-950 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:text-white outline-none cascadia">
                         </div>
                         <div class="w-full h-full">
-                            <label for="email" class="block text-gray-100 font-medium cascadia">Editar Correo Electrónico:</label>
+                            <label for="email" class="block dark:text-gray-100 font-medium cascadia">Editar Correo Electrónico:</label>
                             <input type="email" id="email" name="email" value="{{ usuario.email }}" required
-                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-white  outline-none cascadia">
+                                class="w-full px-3 py-2 border  dark:border-gray-50 border-gray-950 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 tdark:ext-white  outline-none cascadia">
                         </div>
                         <div class="flex justify-evenly w-full ">
                             <a href="{{ url_for('show_usuario') }}" class="text-white bg-red-500 rounded-lg py-2 px-4 hover:underline">Cancelar</a>
@@ -99,7 +99,7 @@
                   <!-- Modal para eliminar usuario -->
                   <div id="modal2-{{ user.id }}" class="fixed inset-0 bg-secundary/10 bg-opacity-50 hidden">
                       <div class="flex justify-center items-center h-full">
-                          <div class="bg-secundary/90 p-6 rounded-lg w-1/3">
+                          <div class="bg-white dark:bg-secundary/90 p-6 rounded-lg w-1/3">
                               <h2 class="text-xl font-semibold mb-4 cascadia text-gray-300">Eliminar usuario</h2>
                               <p class="mb-4 cascadia text-gray-400">¿Deseas eliminar a {{ user.username }}?</p>
                               <div class="w-full h-auto justify-evenly items-center">

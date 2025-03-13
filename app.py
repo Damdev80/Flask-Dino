@@ -31,6 +31,11 @@ def load_user(user_id):
 
 # Página de inicio (solo accesible para usuarios registrados)
 @app.route('/')
+@app.route('/welcome')
+def welcome():
+    return render_template('welcome.html')
+
+
 @login_required
 def index():
     return render_template('index.html'), 404
@@ -166,18 +171,20 @@ def categorias():
     juegos = Game.query.all()
     return render_template('categorias.html', juegos=juegos)
 
+
 @app.route('/dashboard/categorias/nuevo', methods=['GET', 'POST'])
 def new_games():
     if request.method == 'POST':
         name = request.form['name']
         image_url = request.form['image_url']
         price = float(request.form['price'])
+        categoria = request.form['categoria']
         
         if Game.query.filter_by(name=name).first():
             flash('El nombre de usuario ya está en uso.', 'error')
             return redirect(url_for('new_games')) 
         
-        nuevo_juego = Game(name=name, image_url=image_url, price=price)
+        nuevo_juego = Game(name=name, image_url=image_url, price=price, categoria=categoria)
         db.session.add(nuevo_juego)
         db.session.commit()
         
@@ -289,6 +296,44 @@ def crear_empleado():
     flash('Empleado agregado correctamente.', 'success')
     return redirect(url_for('show_empleado'))
 
+
+# @app.route('/dashboard/empleado/editar/<int:id>', methods=['GET', 'POST'])
+# def editar_empleado(id):
+#     empleado = Empleado.query.get_or_404(id)  # Si no encuentra el usuario, devuelve un error 404
+
+#     if request.method == 'POST':
+#         name = request.form.get('name')
+#         email = request.form.get('email')
+
+#         if name and email:  # Aseguramos que no sean valores vacíos
+#             empleado.name = name
+#             empleado.email = email
+#             db.session.commit()
+#             flash('Empleado actualizado correctamente.', 'success')
+#             return redirect(url_for('show_empleado'))
+#         else:
+#             flash('Todos los campos son obligatorios.', 'danger')
+
+#     return render_template('empleado.html', empleado=empleado)
+
+# @app.route('/dashboard/empleado/editar/<int:id>', methods=['GET', 'POST'])
+# def editar_empleado(id):
+#     empleado = Empleado.query.get_or_404(id)  # Si no encuentra el usuario, devuelve un error 404
+
+#     if request.method == 'POST':
+#         name = request.form.get('name')
+#         email = request.form.get('email')
+
+#         if name and email:  # Aseguramos que no sean valores vacíos
+#             empleado.name = name
+#             empleado.email = email
+#             db.session.commit()
+#             flash('Empleado actualizado correctamente.', 'success')
+#             return redirect(url_for('show_empleado'))
+#         else:
+#             flash('Todos los campos son obligatorios.', 'danger')
+
+#     return render_template('empleado.html', empleado=empleado)
 
 #Modelo de productos
 @app.route('/dashboard/productos/')
