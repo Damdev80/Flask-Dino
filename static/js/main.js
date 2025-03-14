@@ -34,10 +34,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const filtro = searchInput.value.toLowerCase();
       juegos.forEach(juego => {
           const nombre = juego.querySelector("h2").textContent.toLowerCase();
-          juego.style.display = nombre.includes(filtro) ? "block" : "none";
+          // Se busca en un elemento con clase "categoria"
+          const categoriaElement = juego.querySelector(".categoria");
+          const categoria = categoriaElement ? categoriaElement.textContent.toLowerCase() : "";
+          
+          // Se muestra la tarjeta si el filtro coincide con el nombre o con la categoría
+          juego.style.display = (nombre.includes(filtro) || categoria.includes(filtro)) ? "block" : "none";
       });
   });
 });
+
 
 
 // ------------------------

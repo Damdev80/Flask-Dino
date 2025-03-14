@@ -12,11 +12,11 @@
             <li class="ml-10 cascadia flex items-center"><img src="{{url_for('static',filename='img/logo-dino.svg')}}"
                     alt=""><a href="/" class="pl-2">Icone</a></li>
             <div class=" w-[480px] flex items-center justify-between  mr-10">
-                <li class=" "><a href="/" class="hover:bg-secundary transition-all px-5 py-2 mx-3 rounded cascadia text-nowrap">About us</a>
+                <li class=" "><a href="/" class="hover:bg-secundary transition-all px-5 py-2 mx-3 rounded cascadia text-nowrap"></a>
                 </li>
-                <li class=""><a href="#juegos" class="hover:bg-secundary transition-all  px-5 py-2 mx-3 rounded cascadia">Juegos</a>
+                <li class=""><a href="#juegos" class="hover:bg-secundary transition-all  px-5 py-2 mx-3 rounded cascadia"></a>
                 </li>
-                <li class=""><a href="/login" class="hover:bg-secundary transition-all p-3 mx-3 rounded text-nowrap cascadia">Log out</a>
+                <li class=""><a href="/login" class="hover:bg-secundary transition-all p-3 mx-3 rounded text-nowrap cascadia"></a>
                 </li>
                 <li>
                     <div class="relative flex justify-center items-center bg-sky-700 dark:bg-gray-800 p-1 rounded-full w-[140px]">
@@ -49,24 +49,28 @@
     </header>
     <main class="w-4/5 h-screen mx-auto flex justify-center items-center">
 
-        <form action="{{ url_for('crear_empleado') }}" class="w-3/6 h-4/5 flex flex-col justify-center bg-secundary rounded-lg  items-center" method="POST">
+        <form action="{{ url_for('crear_empleado') }}" class="sm:w-3/6 sm:h-[85%] w-full h-[85%]  mt-10 flex flex-col justify-center bg-secundary/20 dark:bg-secundary rounded-lg  items-center" method="POST">
           
-            <a href="/dashboard" class="dark:text-white self-start cascadia text-lg bg-sky-950/20  hover:bg-sky-950 p-1 px-2 rounded-lg transition-all "> <- Volver </a>
-            <h1 class="dark:text-white cascadia text-2xl my-10">Nuevo de Empleados</h1>
+            <a href="/dashboard" class="text-white self-start cascadia text-lg bg-sky-950/20  hover:bg-sky-950 p-1 px-2 rounded-lg transition-all "> <- Volver </a>
+            <h1 class=" text-white cascadia text-2xl my-10">Nuevo de Empleados</h1>
             
-            <label for="" class="text-lg dark:text-white cascadia">Nombre del Empleado:</label>
-            <input type="text" name="name" class="w-3/6 py-1 border-2 dark:text-white outline-none pl-1 border-white/20 rounded-lg" required>
-            <label for="" class="text-lg dark:text-white cascadia">imagen del Empleado:</label>
-            <input type="text" name="img_url" class="w-3/6 py-1 border-2 dark:text-white outline-none pl-1 border-white/20 rounded-lg" required>
-            <label for="" class="text-lg dark:text-white cascadia">Correo del Empleado:</label>
-            <input type="text" name="email" class="w-3/6 py-1 border-2 dark:text-white outline-none pl-1 border-white/20 rounded-lg" required>
-            <label for="" class="text-lg dark:text-white cascadia">Cargo del Empleado:</label>
-            <input type="text" name="job" class="w-3/6 py-1 border-2 dark:text-white outline-none pl-1 border-white/20 rounded-lg" required >
-            <label for="" class="text-lg dark:text-white cascadia">Direccion del Empleado:</label>
-            <input type="text" name="address" class="w-3/6 py-1 border-2 dark:text-white outline-none pl-1 border-white/20 rounded-lg" required >
-            <label for="" class="text-lg dark:text-white cascadia">Telefono del Empleado:</label>
-            <input type="text" name="phone" class="w-3/6 py-1 border-2 dark:text-white outline-none pl-1 border-white/20 rounded-lg" required >
-            <button type="submit" class="w-1/2 h-10 text-xl p-2 mb-6 mt-6 rounded-lg bg-sky-950 dark:text-white cascadia ">Agregar empleado</button>
+            <label for="" class="text-lg text-white cascadia">Nombre del Empleado:</label>
+            <input type="text" name="name" class="w-3/6 py-1 border-2 text-white outline-none pl-1 border-white/20 rounded-lg cascadia" required placeholder="Nombre">
+            <label for="" class="text-lg text-white cascadia">imagen del Empleado:</label>
+            <input type="text" name="img_url" class="w-3/6 py-1 border-2 text-white outline-none pl-1 border-white/20 rounded-lg cascadia" required placeholder="Imagen">
+            <label for="" class="text-lg text-white cascadia">Correo del Empleado:</label>
+            <input type="text" name="email" class="w-3/6 py-1 border-2 text-white outline-none pl-1 border-white/20 rounded-lg cascadia" required
+            placeholder="Email">
+            <label for="" class="text-lg text-white cascadia">Cargo del Empleado:</label>
+            <input type="text" name="job" class="w-3/6 py-1 border-2 text-white outline-none pl-1 border-white/20 rounded-lg cascadia" required 
+            placeholder="Cargo">
+            <label for="" class="text-lg text-white cascadia">Direccion del Empleado:</label>
+            <input type="text" name="address" class="w-3/6 py-1 border-2 text-white outline-none pl-1 border-white/20 rounded-lg cascadia" required 
+            placeholder="Direccion">
+            <label for="" class="text-lg text-white cascadia">Telefono del Empleado:</label>
+            <input type="text" name="phone" class="w-3/6 py-1 border-2 text-white outline-none pl-1 border-white/20 rounded-lg cascadia" required 
+            placeholder="Telefono">
+            <button type="submit" class="w-1/2 h-10 text-xl p-2 mb-6 mt-6 rounded-lg bg-secundary/20  dark:bg-sky-950 text-white cascadia ">Agregar empleado</button>
         </form>
     </main>
     

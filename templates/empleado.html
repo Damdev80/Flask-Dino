@@ -12,11 +12,11 @@
             <li class="ml-10 cascadia flex items-center"><img src="{{url_for('static',filename='img/logo-dino.svg')}}"
                     alt=""><a href="/" class="pl-2">Icone</a></li>
             <div class=" w-[480px] flex items-center justify-between  mr-10">
-                <li class=" "><a href="/" class="hover:bg-secundary transition-all px-5 py-2 mx-3 rounded cascadia text-nowrap">About us</a>
+                <li class=" "><a href="/" class="hover:bg-secundary transition-all px-5 py-2 mx-3 rounded cascadia text-nowrap"></a>
                 </li>
-                <li class=""><a href="#juegos" class="hover:bg-secundary transition-all  px-5 py-2 mx-3 rounded cascadia">Juegos</a>
+                <li class=""><a href="#juegos" class="hover:bg-secundary transition-all  px-5 py-2 mx-3 rounded cascadia"></a>
                 </li>
-                <li class=""><a href="/login" class="hover:bg-secundary transition-all p-3 mx-3 rounded text-nowrap cascadia">Log out</a>
+                <li class=""><a href="/login" class="hover:bg-secundary transition-all p-3 mx-3 rounded text-nowrap cascadia"></a>
                 </li>
                 <li>
                     <div class="relative flex justify-center items-center bg-sky-700 dark:bg-gray-800 p-1 rounded-full w-[140px]">
@@ -50,18 +50,18 @@
     <main>
       <div class="container mx-auto p-6 w-full flex flex-col justify-center items-center h-auto mt-20 overflow-hidden">
         
-        <div class="w-full h-20 flex justify-evenly items-center">
-          <a href="/dashboard" class="dark:text-white cascadia text-lg bg-secundary/80 hover:bg-secundary p-1 px-2 rounded-lg transition-all"> <- Volver </a>
-          <h1 class="dark:text-white cascadia text-2xl">Lista de Empleados</h1>
-          <a href="/dashboard/empleado/nuevo" class="dark:text-white bg-emerald-950 hover:bg-emerald-800 p-1 px-2 rounded-lg cascadia text-lg transition-all"> Agregar empleado</a>
+        <div class="w-full h-20 flex sm:justify-evenly justify-between  items-center">
+          <a href="/dashboard" class="text-white cascadia text-lg bg-sky-500  dark:bg-secundary/80 dark:hover:bg-secundary p-1 sm:px-2 px-1 rounded-lg transition-all"> <- Volver </a>
+          <h1 class="text-white cascadia  sm:text-2xl text-lg text-center">Lista de Empleados</h1>
+          <a href="/dashboard/empleado/nuevo" class="text-white bg-teal-500 hover:bg-teal-700  dark:bg-emerald-950 dark:hover:bg-emerald-800 p-1 px-2 rounded-lg cascadia  text-lg transition-all"> Agregar empleado</a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full justify-center items-center">
             {% for Empleado in empleados %}
-                <div class="bg-sky-700 dark:bg-secundary px-2 py-1 rounded-lg  w-auto h-[400px] flex flex-col items-center justify-center">
+                <div class="bg-transparent shadow-lg dark:bg-secundary px-2 py-1 rounded-lg  w-auto h-[400px] flex flex-col items-center justify-center">
                       <div class="h-[70%] w-full">
                         <img src="{{ Empleado.img_url }}" alt="{{Empleado.img_url}}" class="object-cover w-full h-full rounded-lg ">
                       </div> 
-                      <h2 class="text-2xl font-semibold mt-2 text-black dark:text-white">{{ Empleado.username }}</h2>
+                      <h2 class="text-2xl font-semibold mt-2 text-white">{{ Empleado.name }}</h2>
                       <p class="text-2xl dark:text-white cascadia" > {{Empleado.job}} </p>
                     <p class="text-gray-600 text-lg">{{ Empleado.email }}</p>
                 </div>

@@ -2,12 +2,13 @@
 /.venv
 /venv/
 /env/
-
+/
 # Node.js dependencies
 /node_modules
 
 # Template test file
 /templates/test.html
+
 
 # Python cache files
 __pycache__/
@@ -41,3 +42,4 @@ instance/
 dist/
 build/
 *.egg-info/
+
