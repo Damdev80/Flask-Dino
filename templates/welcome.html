@@ -12,12 +12,12 @@
         <ul class="w-full h-16 flex items-center justify-between bg-primary/20 text-white backdrop-blur-lg fixed top-0 z-10">
             <li class="ml-10 cascadia flex items-center"><img src="{{url_for('static',filename='img/logo-dino.svg')}}"
                     alt=""><a href="/" class="pl-2">Icone</a></li>
-            <div class=" w-[480px] flex items-center justify-between  mr-10">
-                <li class=" "><a href="/" class="hover:bg-secundary transition-all px-5 py-2 mx-3 rounded cascadia text-nowrap">About us</a>
+            <div class=" w-[480px] flex items-center justify-between  mr-2">
+                <li class=" "><a href="/" class="transition-all px-5 py-2 mx-3 rounded cascadia text-nowrap"></a>
                 </li>
-                <li class=""><a href="#juegos" class="hover:bg-secundary transition-all  px-5 py-2 mx-3 rounded cascadia">Juegos</a>
+                <li class=""><a href="#juegos" class=" transition-all  px-5 py-2 mx-3 rounded cascadia"></a>
                 </li>
-                <li class=""><a href="/login" class="hover:bg-secundary transition-all p-3 mx-3 rounded text-nowrap cascadia">Log out</a>
+                <li class=""><a href="/login" class=" transition-all p-3 mx-3 rounded text-nowrap cascadia"></a>
                 </li>
                 <li>
                     <div class="relative flex justify-center items-center bg-sky-700 dark:bg-gray-800 p-1 rounded-full w-[140px]">
@@ -62,10 +62,16 @@
                     
                 </section>
             </div>
-            <div class="w-1/2 mr-auto  px-4 gap-10">
-                <section >
-                    <img src="{{url_for('static',filename='img/bienvenido_lg.webp')}}" alt="Promoción Dino-Games" class="rounded-lg shadow-lg w-full">
-                </section>
+            <div class="w-1/2 h-[400px] mr-auto  px-4 flex flex-col gap-10">
+                <div class="w-full h-1/3  flex flex-row justify-start ml-20">
+                    <img src="{{url_for('static', filename='img/mando_de_play_5.webp')}}" alt="" class="object-contain w-auto h-full rounded-lg  ">
+                </div>
+                <div class="w-full h-1/3 flex flex-row justify-end ">
+                    <img src="{{url_for('static', filename='img/xbox-one-controller.png')}}" alt="" class="object-contain w-auto h-full rounded-lg">
+                </div>
+                <div class="w-full h-1/3 flex flex-row justify-star ml-[120px]" >
+                    <img src="{{url_for('static', filename='img/teclado-mouse-img.png')}}" alt="" class="object-contain w-auto h-full rounded-lg ">
+                </div>
             </div>
         </div>
     
@@ -80,9 +86,9 @@
         <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-10">
             
             <div class="bg-primary/30 backdrop-blur-lg rounded-lg shadow-lg p-6 text-center border border-secundary">
-                <img class="w-full h-40 object-cover rounded-lg" src="{{url_for('static',filename='img/carta1.jpg')}}" alt="Juego 1">
+                <img class="w-full h-40 object-cover rounded-lg" src="{{url_for('static',filename='img/imagen_juego_zelda.jpeg')}}" alt="Juego 1">
                 <h5 class="text-lg font-semibold mt-4 cascadia">The Legend of Zelda: Breath of the Wild</h5>
-                <p class="text-sm text-gray-300 cascadia">Explora Hyrule en esta increíble.</p>
+                <p class="text-sm text-gray-300 cascadia">Explora Hyrule.</p>
                 <a href="/tienda" class="bg-secundary text-white px-4 py-2 rounded-lg mt-4 inline-block hover:bg-primary transition cascadia">
                     Ver más 🎮
                 </a>
@@ -90,7 +96,7 @@
     
 
             <div class="bg-primary/30 backdrop-blur-lg rounded-lg shadow-lg p-6 text-center border border-secundary">
-                <img class="w-full h-40 object-cover rounded-lg" src="{{url_for('static',filename='img/carta2.jpeg')}}" alt="Juego 2">
+                <img class="w-full h-40 object-cover rounded-lg" src="{{url_for('static',filename='img/imagen_juego_elden.jpeg')}}" alt="Juego 2">
                 <h5 class="text-lg font-semibold mt-4 cascadia">Elden Ring</h5>
                 <p class="text-sm text-gray-300 cascadia">Sumérgete en un mundo de fantasía y desafíos.</p>
                 <a href="/tienda" class="bg-secundary text-white px-4 py-2 rounded-lg mt-4 inline-block hover:bg-primary transition cascadia">
@@ -100,7 +106,7 @@
     
 
             <div class="bg-primary/30 backdrop-blur-lg rounded-lg shadow-lg p-6 text-center border border-secundary">
-                <img class="w-full h-40 object-cover rounded-lg" src="{{url_for('static',filename='img/carta3.jpeg')}}" alt="Juego 3">
+                <img class="w-full h-40 object-cover rounded-lg" src="{{url_for('static',filename='img/imagen_juego_guerra.webp')}}" alt="Juego 3">
                 <h5 class="text-lg font-semibold mt-4 cascadia">God of War: Ragnarök</h5>
                 <p class="text-sm text-gray-300 cascadia">Acompaña a Kratos en su nueva aventura.</p>
                 <a href="/tienda" class="bg-secundary text-white px-4 py-2 rounded-lg mt-4 inline-block hover:bg-primary transition cascadia">
@@ -109,7 +115,7 @@
             </div>
 
             <div class="bg-primary/30 backdrop-blur-lg rounded-lg shadow-lg p-6 text-center border border-secundary">
-                <img class="w-full h-40 object-cover rounded-lg" src="{{url_for('static',filename='img/carta4.jpeg')}}" alt="Juego 3">
+                <img class="w-full h-40 object-cover rounded-lg" src="{{url_for('static',filename='img/imagen_juego_clash.webp')}}" alt="Juego 3">
                 <h5 class="text-lg font-semibold mt-4 cascadia">Clash Royale</h5>
                 <p class="text-sm text-gray-300 cascadia">Diviertete en un mundo lleno de magia.</p>
                 <a href="/tienda" class="bg-secundary text-white px-4 py-2 rounded-lg mt-4 inline-block hover:bg-primary transition cascadia">

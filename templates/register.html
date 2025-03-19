@@ -50,6 +50,27 @@
     </header>
     <main>
         <div class="w-full h-screen flex justify-center items-center">
+          {% with messages = get_flashed_messages(with_categories=True) %}
+              {% if messages %}
+                <div id="alerts-container" class="space-y-2">
+                  {% for category, message in messages %}
+                    <div class=" absolute sm:right-0  sm:top-1/12 z-10 alert p-4 rounded-lg text-white font-medium flex justify-between items-center 
+                      {% if category == 'success' %} bg-green-500 dark:bg-green-500/20 {% elif category == 'error' %} bg-red-500 dark:bg-red-500/20 {% endif %} cascadia">
+                      {{ message }} 
+                      <button class="text-white text-lg" onclick="this.parentElement.remove()"> ✖</button>
+                    </div>
+                  {% endfor %}
+                </div>
+                <script>
+                    // Espera 5 segundos y elimina las alertas automáticamente
+                    setTimeout(() => {
+                      document.querySelectorAll('.alert').forEach(alert => {
+                        alert.remove();
+                      });
+                    }, 5000);
+                  </script>
+                {% endif %}
+              {% endwith %}
             <form action="" class="sm:w-3/6 sm:h-[550px] w-4/5 h-4/5 bg-secundary/30 flex flex-col items-center rounded-3xl backdrop-blur-2xl" method="POST">
                 <div class="rounded-full w-30 h-30 mt-5">
                     <img src="/static/img/logo-dino.svg" alt="" class="object-cover w-full h-full">

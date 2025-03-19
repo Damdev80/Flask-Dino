@@ -16,7 +16,7 @@
                 </li>
                 <li class=""><a href="#juegos" class="hover:bg-secundary transition-all  px-5 py-2 mx-3 rounded cascadia">Juegos</a>
                 </li>
-                <li class=""><a href="/login" class="hover:bg-secundary transition-all p-3 mx-3 rounded text-nowrap cascadia">Log out</a>
+                <li class=""><a href="/login" class="hover:bg-secundary transition-all p-3 mx-3 rounded text-nowrap cascadia"></a>
                 </li>
                 <li>
                     <div class="relative flex justify-center items-center bg-sky-700 dark:bg-gray-800 p-1 rounded-full w-[140px]">
@@ -48,21 +48,44 @@
         </ul>
     </header>
     <main class="w-4/5 h-screen mx-auto flex justify-center items-center">
+      {% with messages = get_flashed_messages(with_categories=True) %}
+              {% if messages %}
+                <div id="alerts-container" class="space-y-2">
+                  {% for category, message in messages %}
+                    <div class=" absolute sm:right-0  sm:top-1/12 z-10 alert p-4 rounded-lg text-white font-medium flex justify-between items-center 
+                      {% if category == 'success' %} bg-green-500 dark:bg-green-500/20 {% elif category == 'error' %} bg-red-500 dark:bg-red-500/20 {% endif %} cascadia">
+                      {{ message }} 
+                      <button class="text-white text-lg" onclick="this.parentElement.remove()"> ✖</button>
+                    </div>
+                  {% endfor %}
+                </div>
+                <script>
+                    // Espera 5 segundos y elimina las alertas automáticamente
+                    setTimeout(() => {
+                      document.querySelectorAll('.alert').forEach(alert => {
+                        alert.remove();
+                      });
+                    }, 5000);
+                  </script>
+                {% endif %}
+              {% endwith %}
 
-        <form action="{{ url_for('crear_producto') }}" class="w-3/6 h-4/5 flex flex-col justify-center bg-secundary rounded-lg  items-center" method="POST">
+        <form action="{{ url_for('crear_producto') }}" class="sm:w-3/6 sm:h-[70%] md:w-4/5 md:4/5 w-full h-[60%] xl:w-3/6 xl:h-[70%]   flex flex-col justify-center bg-secundary rounded-lg  items-center" method="POST">
           
             <a href="/dashboard" class="dark:text-white self-start cascadia text-lg bg-sky-950/20  hover:bg-sky-950 p-1 px-2 rounded-lg transition-all "> <- Volver </a>
             <h1 class="dark:text-white cascadia text-2xl my-10">Nuevo de Producto</h1>
-            
-            <label for="" class="text-lg dark:text-white cascadia">Nombre del Producto</label>
-            <input type="text" name="name" class="w-3/6 py-1 border-2 dark:text-white outline-none pl-1 border-white/20 rounded-lg" required>
-            <label for="" class="text-lg dark:text-white cascadia">imagen del Producto</label>
-            <input type="text" name="img_url" class="w-3/6 py-1 border-2 dark:text-white outline-none pl-1 border-white/20 rounded-lg" required>
-            <label for="" class="text-lg dark:text-white cascadia">Precio del Producto</label>
-            <input type="number" name="price" class="w-3/6 py-1 border-2 dark:text-white outline-none pl-1 border-white/20 rounded-lg" required>
-            <label for="" class="text-lg dark:text-white cascadia">Cantidad del Producto</label>
-            <input type="text" name="stock" class="w-3/6 py-1 border-2 dark:text-white outline-none pl-1 border-white/20 rounded-lg" required >
+            <div class="w-4/5 h-4/5 flex flex-col justify-center items-center">
+            <label for="" class="text-lg dark:text-white cascadia self-start">Nombre del Producto:</label>
+            <input type="text" name="name" class="w-full py-1 border-2 dark:text-white outline-none pl-1 border-white/20 rounded-lg" required placeholder="Ingresa el nombre">
+            <label for="" class="text-lg dark:text-white cascadia self-start">imagen del Producto:</label>
+            <input type="text" name="img_url" class="w-full py-1 border-2 dark:text-white outline-none pl-1 border-white/20 rounded-lg" required placeholder="Ingresa la URL">
+            <label for="" class="text-lg dark:text-white cascadia self-start">Precio del Producto:</label>
+            <input type="number" name="price" class="w-full py-1 border-2 dark:text-white outline-none pl-1 border-white/20 rounded-lg" required placeholder="Ingresa el precio">
+            <label for="" class="text-lg dark:text-white cascadia self-start">Cantidad del Producto:</label>
+            <input type="text" name="stock" class="w-full py-1 border-2 dark:text-white outline-none pl-1 border-white/20 rounded-lg" required  placeholder="Ingresa la cantidad">
             <button type="submit" class="w-3/6 h-10 cascadia text-xl rounded-lg bg-blue-950 my-10 text-white">Enviar</button>
+            </div>
+            
         </form>
     </main>
     

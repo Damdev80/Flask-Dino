@@ -48,6 +48,27 @@
         </ul>
     </header>
     <main class="w-4/5 h-screen mx-auto flex justify-center items-center">
+      {% with messages = get_flashed_messages(with_categories=True) %}
+              {% if messages %}
+                <div id="alerts-container" class="space-y-2">
+                  {% for category, message in messages %}
+                    <div class=" absolute sm:right-0  sm:top-1/12 z-10 alert p-4 rounded-lg text-white font-medium flex justify-between items-center 
+                      {% if category == 'success' %} bg-green-500 dark:bg-green-500/20 {% elif category == 'error' %} bg-red-500 dark:bg-red-500/20 {% endif %} cascadia">
+                      {{ message }} 
+                      <button class="text-white text-lg" onclick="this.parentElement.remove()"> ✖</button>
+                    </div>
+                  {% endfor %}
+                </div>
+                <script>
+                    // Espera 5 segundos y elimina las alertas automáticamente
+                    setTimeout(() => {
+                      document.querySelectorAll('.alert').forEach(alert => {
+                        alert.remove();
+                      });
+                    }, 5000);
+                  </script>
+                {% endif %}
+              {% endwith %}
 
         <form action="{{ url_for('crear_empleado') }}" class="sm:w-3/6 sm:h-[85%] w-full h-[85%]  mt-10 flex flex-col justify-center bg-secundary/20 dark:bg-secundary rounded-lg  items-center" method="POST">
           

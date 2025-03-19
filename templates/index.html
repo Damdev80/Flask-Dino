@@ -42,12 +42,42 @@
                           </svg>
                           
                         </button>
-                      </div>
+                      </div> 
                 </li>
             </div>
         </ul>
     </header>
     <main>
+      {% with messages = get_flashed_messages(with_categories=True) %}
+      {% if messages %}
+        <div id="alerts-container" class="fixed top-4 right-4 z-50 space-y-2">
+          {% for category, message in messages %}
+            <div class="alert transition-opacity duration-500 ease-in-out opacity-100 p-4 rounded-lg text-white font-medium flex justify-between items-center 
+              {% if category == 'success' %} bg-green-500 dark:bg-green-500/20 {% elif category == 'error' %} bg-red-500 dark:bg-red-500/20 {% endif %} shadow-lg cascadia">
+              {{ message }} 
+              <button class="text-white text-lg focus:outline-none ml-4" onclick="closeAlert(this)">✖</button>
+            </div>
+          {% endfor %}
+        </div>
+    
+        <script>
+          function closeAlert(button) {
+            let alert = button.parentElement;
+            alert.classList.add("opacity-0");  // Agregar clase para animación de salida
+            setTimeout(() => alert.remove(), 500);  // Esperar la animación y eliminar
+          }
+    
+          setTimeout(() => {
+            document.querySelectorAll('.alert').forEach(alert => {
+              alert.classList.add("opacity-0");  // Desvanecer
+              setTimeout(() => alert.remove(), 500);  // Eliminar tras la animación
+            });
+          }, 5000);
+        </script>
+      {% endif %}
+    {% endwith %}
+    
+
         <div class="w-4/5 m-auto h-screen bg-transparent flex ">
             <div class="w-1/2 h-screen flex flex-col justify-center items-center cascadia">
                 <h1 class=" text-4xl self-start dark:text-white  font-bold  ">Welcome for </h1>

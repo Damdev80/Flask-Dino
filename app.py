@@ -39,6 +39,7 @@ def welcome():
 @login_required
 @app.route('/index')
 def index():
+    flash('¡Inicio de sesión exitoso!', 'success')
     return render_template('index.html'), 404
     
 
@@ -269,6 +270,7 @@ def editar_usuario(id):
 @app.route('/dashboard/empleado/')
 def show_empleado():
     empleados = Empleado.query.all()
+    flash('Empleado agregado correctamente.', 'success')
     return render_template('empleado.html', empleados=empleados)
 
 @app.route('/api/empleado', methods=['GET', 'POST'])
@@ -279,6 +281,7 @@ def api_empleado():
 
 @app.route('/dashboard/empleado/nuevo/')
 def nuevo_empleado():
+    
     return render_template('nuevo-empleado.html')
 
 @app.route('/dashboard/empleado/nuevo/', methods=['POST'])
@@ -294,7 +297,6 @@ def crear_empleado():
     db.session.add(nuevo_empleado)
     db.session.commit()
     
-    flash('Empleado agregado correctamente.', 'success')
     return redirect(url_for('show_empleado'))
 
 
