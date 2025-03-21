@@ -8,7 +8,7 @@
 
 # Template test file
 /templates/test.html
-
+/test.py
 
 # Python cache files
 __pycache__/
