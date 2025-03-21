@@ -59,7 +59,7 @@
 
         <div id="juegos-container" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 mt-4">
             {% for juego in juegos %}
-            <div class="juego-card p-2   dark:inset-shadow-white  dark:border-gray-300/20 dark:bg-secundary/5  bg-sky-300/20 rounded-lg" >
+            <div class="juego-card p-2 border-4 border-white   dark:inset-shadow-white  dark:border-gray-300/20 dark:bg-secundary/5  bg-sky-300/20 rounded-lg" >
                 <img src="{{ juego.image_url  }}" alt="{{ juego.name }}" class="w-full h-40 object-fill rounded-lg">
                 <h2 class="text-xl font-semibold mt-2 text-white cascadia">{{ juego.name }}</h2>
                 <p class="text-lg font-semibold m-1 text-white/90 cascadia categoria">{{ juego.categoria }}</p>
