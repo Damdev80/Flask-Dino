@@ -13,11 +13,15 @@ class User(db.Model, UserMixin):
     # Campos para la recuperación de contraseña
     reset_token = db.Column(db.String(100), nullable=True)
     reset_expiration = db.Column(db.DateTime, nullable=True)
+    role = db.Column(db.String(50), nullable=False, default="user")
     
-    def __init__(self, username, email, password):
+    def __init__(self, username, email, password, role="user"):
         self.username = username
         self.email = email
         self.password = password
+        self.role = role    
+    def is_admin(self):
+        return self.role == "admin"
 
 
 

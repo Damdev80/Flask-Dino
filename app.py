@@ -1,11 +1,14 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, jsonify
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User, Game, Client, Product, Empleado  # Asegúrate de importar el modelo User desde models.py
 from utils import send_recovery_email
+from decorators import admin_required
 from datetime import datetime, timedelta, timezone
+
 import os, secrets
+
+
 
 
 app = Flask(__name__)
@@ -159,22 +162,29 @@ def test():
 
 #Ruta para el dashboard
 @app.route('/dashboard')
+@login_required
+@admin_required
 def dashboard():
     
     return render_template('dashboard.html')
 
 @app.route('/dashboard/usuarios')
+@login_required
+@admin_required
 def usuarios():
     return render_template('usuarios.html')
 
 #Modelo de juego y el CRUD
 @app.route('/dashboard/categorias')
+@login_required
+@admin_required
 def categorias():
     juegos = Game.query.all()
     return render_template('categorias.html', juegos=juegos)
 
 
 @app.route('/dashboard/categorias/nuevo', methods=['GET', 'POST'])
+@login_required
 def new_games():
     if request.method == 'POST':
         name = request.form['name']
@@ -196,11 +206,15 @@ def new_games():
     return render_template('nuevo-juego.html')
 
 @app.route('/dashboard/usuarios/', methods=['GET', 'POST'])
+@login_required
+@admin_required
 def clientes_show():
     usuarios = Client.query.all()
     return render_template('usuarios.html', usuarios=usuarios)
 
 @app.route('/api/clientes/')
+@login_required
+@admin_required
 def clientes():
     clients = Client.query.all()  
     clients_data = [
@@ -209,7 +223,9 @@ def clientes():
     ]  
     return jsonify(clients_data)
 
-@app.route('/api/juegos')   
+@app.route('/api/juegos')
+@login_required
+@admin_required   
 def api_juegos():
     juegos = Game.query.all()
     juegos_json = [{"id": j.id, "name": j.name, "image_url": j.image_url, "price": j.price, "genre": j.genre} for j in juegos]
@@ -218,11 +234,15 @@ def api_juegos():
 #Modelo de usuarios y su CRUD
     
 @app.route('/dashboard/usuario/', methods=['GET', 'POST'])
+@login_required
+@admin_required
 def show_usuario():
     usuario = User.query.all()
     return render_template('usuarios.html', usuario=usuario)
 
 @app.route('/api/usuario', methods=['GET', 'POST'])
+@login_required
+@admin_required
 def api_usuario():
     usuario = User.query.all()
     usuario_json = [{"id": User.id, "username": User.username, "email": User.email} for User in usuario]
@@ -230,6 +250,8 @@ def api_usuario():
 
 # Ruta para eliminar un usuario
 @app.route('/dashboard/usuario/desactivar/<int:user_id>', methods=['POST'])
+@login_required
+@admin_required
 def desactivar_usuario(user_id):
     usuario = User.query.get(user_id)
     
@@ -245,6 +267,7 @@ def desactivar_usuario(user_id):
 
 # Ruta para actualizar un usuario
 @app.route('/dashboard/usuario/editar/<int:id>', methods=['GET', 'POST'])
+@login_required
 def editar_usuario(id):
     usuario = User.query.get_or_404(id)  # Si no encuentra el usuario, devuelve un error 404
 
@@ -268,23 +291,27 @@ def editar_usuario(id):
 # Modelo de empleado  y su CRUD
 
 @app.route('/dashboard/empleado/')
+@login_required
 def show_empleado():
     empleados = Empleado.query.all()
     flash('Empleado agregado correctamente.', 'success')
     return render_template('empleado.html', empleados=empleados)
 
 @app.route('/api/empleado', methods=['GET', 'POST'])
+@login_required
 def api_empleado():
     empleados = Empleado.query.all()
     empleado_json = [{"id": Empleado.id, "name": Empleado.name, "email": Empleado.email, "phone": Empleado.phone, "address": Empleado.address, "job": Empleado.job} for Empleado in empleados]
     return jsonify(empleado_json)
 
 @app.route('/dashboard/empleado/nuevo/')
+@login_required
 def nuevo_empleado():
     
     return render_template('nuevo-empleado.html')
 
 @app.route('/dashboard/empleado/nuevo/', methods=['POST'])
+@login_required
 def crear_empleado():
     name = request.form['name']
     img_url = request.form['img_url']
@@ -340,11 +367,13 @@ def crear_empleado():
 
 #Modelo de productos
 @app.route('/dashboard/productos/')
+@login_required
 def show_productos():
     productos = Product.query.all()
     return render_template('productos.html', productos=productos)
 
 @app.route('/api/productos')
+@login_required
 def api_productos():
     productos = Product.query.all()
     productos_json = [{"id": Product.id, "name": Product.name, "img_url": Product.img_url, "price": Product.price, "stock": Product.stock} for Product in productos]
@@ -352,10 +381,12 @@ def api_productos():
 
 
 @app.route('/dashboard/productos/nuevo')
+@login_required
 def nuevo_producto():
     return render_template("nuevo-producto.html")
 
 @app.route('/dashboard/productos/nuevo', methods=['POST'])
+@login_required
 def crear_producto():
     name = request.form['name']
     price = request.form['price']
