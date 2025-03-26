@@ -14,9 +14,10 @@
             <div class=" w-[480px] flex items-center justify-between  mr-10">
               
                 </li>
-                <li class=""><a href="/login" class="  rounded text-nowrap cascadia"></a>
-                </li>
+                
                 <li>
+                  <li class=""><a href="/login" class="rounded text-nowrap cascadia">Log out</a>
+                  </li>
                     <div class="relative flex justify-center items-center bg-sky-700 dark:bg-gray-800 p-1 rounded-full w-[140px]">
                         <!-- Indicador Deslizante con Sombra -->
                        
@@ -51,7 +52,7 @@
         <div id="alerts-container" class="fixed top-4 right-4 z-50 space-y-2">
           {% for category, message in messages %}
             <div class="alert transition-opacity duration-500 ease-in-out opacity-100 p-4 rounded-lg text-white font-medium flex justify-between items-center 
-              {% if category == 'success' %} bg-green-500 dark:bg-green-500/20 {% elif category == 'error' %} bg-red-500 dark:bg-red-500/20 {% endif %} shadow-lg cascadia">
+              {% if category == 'success' %} bg-green-500 dark:bg-green-500 {% elif category == 'error' %} bg-red-500 dark:bg-red-500/20 {% endif %} shadow-lg cascadia">
               {{ message }} 
               <button class="text-white text-lg focus:outline-none ml-4" onclick="closeAlert(this)">✖</button>
             </div>

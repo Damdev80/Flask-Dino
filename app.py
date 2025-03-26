@@ -5,11 +5,7 @@ from models import db, User, Game, Client, Product, Empleado  # Asegúrate de im
 from utils import send_recovery_email
 from decorators import admin_required
 from datetime import datetime, timedelta, timezone
-
 import os, secrets
-
-
-
 
 app = Flask(__name__)
 
